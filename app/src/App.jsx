@@ -124,8 +124,13 @@ function ScrollToTop() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.hash) {
-      const target = document.getElementById(location.hash.slice(1));
+    const browserHash = window.location.hash || '';
+    const nestedHashStart = browserHash.indexOf('#', 1);
+    const nestedHash = nestedHashStart >= 0 ? browserHash.slice(nestedHashStart) : '';
+    const activeHash = location.hash || nestedHash;
+
+    if (activeHash) {
+      const target = document.getElementById(activeHash.slice(1));
 
       if (target) {
         window.requestAnimationFrame(() => {
@@ -1343,6 +1348,18 @@ function VibeStudioPage() {
       phrase: 'A clean bridge from build to long-term ownership.',
       fields: ['App summary', 'Service list', 'Secret keys checklist', 'Testing checklist', 'Maintenance plan'],
     },
+    {
+      name: 'VibeGuide',
+      label: (
+        <>
+          VibeGuide<sup>&trade;</sup>
+        </>
+      ),
+      text:
+        'A dedicated help conversation that remembers what you asked, learns where you get stuck, and teaches you through your actual app.',
+      phrase: 'Help that learns how you learn.',
+      fields: ['Past questions', 'Stuck points', 'Confidence gaps', 'Next lesson', 'Safe help', 'Your own app'],
+    },
   ];
 
   const ownerManual = [
@@ -1371,6 +1388,36 @@ function VibeStudioPage() {
     ['Operators', 'workflow tools'],
   ];
 
+  const helpMemory = [
+    ['Saved information', '12 times', 'Still learning', '2 days ago'],
+    ['Secret keys', '7 times', 'Needs caution', '5 days ago'],
+    ['Pages and layout', '3 times', 'Comfortable', '3 weeks ago'],
+    ['Payments', '9 times', 'Risk area', 'Yesterday'],
+    ['Launching', '5 times', 'Improving', '1 week ago'],
+  ];
+
+  const confidenceMap = [
+    ['You are confident with', ['Pages', 'Text changes', 'Basic layout edits', 'Simple forms']],
+    ['You are still learning', ['Saved information', 'Secret keys', 'Payments', 'Launch settings']],
+    ['You often ask about', ['Where data is stored', 'What can break', 'How to test changes', 'What is safe to touch']],
+    ['You have improved in', ['Understanding pages', 'Launching small updates', 'Using safe prompts', 'Reading change summaries']],
+  ];
+
+  const appTeachingPairs = [
+    [
+      'A database stores structured data.',
+      'In your app, saved information means your builder profiles, project notes, saved prompts, and owner manual entries. They live in Supabase.',
+    ],
+    [
+      'An API connects services.',
+      'In your app, outside services means Stripe for payments, Resend for email, and Supabase for login and saved information.',
+    ],
+    [
+      'Run tests before deployment.',
+      'Before launching this change, test sign-up, the builder filter, saved projects, and the Owner Manual export.',
+    ],
+  ];
+
   return (
     <section className="relative z-10">
       <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[.92fr_1.08fr] lg:px-8 lg:py-20">
@@ -1396,6 +1443,9 @@ function VibeStudioPage() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Button to="/vibestudio" icon={Rocket}>
               Explore VibeStudio
+            </Button>
+            <Button to="/vibestudio#vibeguide" variant="ghost" icon={MessageCircle}>
+              Meet VibeGuide
             </Button>
             <Button to="/builders" variant="ghost" icon={Sparkles}>
               Join the Waitlist
@@ -1484,8 +1534,8 @@ function VibeStudioPage() {
 
       <section id="how-it-works" className="section-shell">
         <SectionHeader
-          eyebrow="Five modes"
-          title="The five modes of VibeStudio"
+          eyebrow="Six modes"
+          title="The six modes of VibeStudio"
           text="Each mode turns lived experience into an understandable product, then keeps the owner in control after launch."
         />
         <div className="grid gap-5">
@@ -1493,7 +1543,7 @@ function VibeStudioPage() {
             <article key={mode.name} className="studio-mode-card reveal">
               <div>
                 <span className="number-mark">{String(index + 1).padStart(2, '0')}</span>
-                <h3 className="mt-5 font-display text-3xl font-bold text-white">{mode.name}</h3>
+                <h3 className="mt-5 font-display text-3xl font-bold text-white">{mode.label || mode.name}</h3>
                 <p className="mt-4 text-sm leading-7 text-zinc-400">{mode.text}</p>
                 <p className="mt-5 border-l-2 border-cyanNeon/70 pl-4 text-sm font-bold leading-6 text-cyanNeon">
                   {mode.phrase}
@@ -1509,7 +1559,7 @@ function VibeStudioPage() {
         </div>
       </section>
 
-      <section className="section-shell">
+      <section id="owner-mode" className="section-shell">
         <SectionHeader
           eyebrow="Owner Mode"
           title="Owner Mode is the missing layer every AI IDE forgot."
@@ -1600,6 +1650,234 @@ function VibeStudioPage() {
         </div>
       </section>
 
+      <section id="vibeguide" className="section-shell">
+        <div className="vibeguide-shell reveal">
+          <div className="grid gap-8 lg:grid-cols-[.82fr_1.18fr] lg:items-center">
+            <div>
+              <Badge tone="amber" icon={MessageCircle}>
+                Special feature
+              </Badge>
+              <h2 className="mt-6 font-display text-5xl font-bold leading-tight text-white sm:text-7xl">
+                VibeGuide<sup className="ml-1 text-2xl text-amberSignal sm:text-3xl">&trade;</sup>
+              </h2>
+              <p className="mt-5 font-display text-3xl font-bold leading-tight text-white sm:text-5xl">
+                Help that learns how you learn.
+              </p>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
+                Old help systems answer questions. VibeGuide learns the person asking them.
+              </p>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-400">
+                It is a dedicated help conversation inside VibeStudio that understands your app, your project stage,
+                your past questions, your repeated stuck points, your skill level, and what you are trying to do next.
+              </p>
+              <div className="mt-7 rounded-lg border border-cyanNeon/25 bg-cyanNeon/10 p-5 font-display text-2xl font-bold text-white shadow-cyan">
+                Help should not be a manual. Help should be a memory.
+              </div>
+            </div>
+            <VibeGuideInterface />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Two conversations"
+          title="Two conversations. Two different jobs."
+          text="Building and understanding should not be trapped in the same chat."
+        />
+        <div className="grid gap-5 lg:grid-cols-2">
+          <ConversationPanel
+            title="Build Conversation"
+            description="This is where the user talks to AI to create or change the app."
+            items={[
+              'Add a booking page',
+              'Change the dashboard',
+              'Create a customer form',
+              'Generate the Owner Manual',
+              'Prepare a Codex prompt',
+              'Build the next feature',
+            ]}
+          />
+          <ConversationPanel
+            title="Help Conversation"
+            highlight
+            description="This is where the user learns, understands, and gets unstuck."
+            items={[
+              'Explain this like I am not technical',
+              'Why did this break?',
+              'Have I asked this before?',
+              'What do I keep getting stuck on?',
+              'Am I safe to change this?',
+              'I am scared to touch this',
+            ]}
+          />
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Help Memory"
+          title="VibeGuide remembers what confused you, so it can help you grow."
+          text="Most tools treat every help question like a one-off. VibeGuide keeps a running memory of the user's learning journey."
+        />
+        <div className="grid gap-6 lg:grid-cols-[1.05fr_.95fr]">
+          <HelpMemoryDashboard items={helpMemory} />
+          <div className="grid gap-4">
+            {[
+              'Repeated questions',
+              'Topic frequency',
+              'Last asked date',
+              'Unresolved confusion',
+              'Confidence level',
+              'Project area affected',
+              'Explanations that helped',
+              'Topics the user stopped asking about',
+            ].map((item) => (
+              <div key={item} className="memory-chip reveal">
+                <Bookmark className="size-4 text-amberSignal" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Builder Confidence Map"
+          title="Your Builder Confidence Map"
+          text="VibeGuide turns your behaviour into a private confidence map. It shows what you are comfortable with, what still needs guidance, and what to learn next."
+        />
+        <ConfidenceMapPanel sections={confidenceMap} />
+        <div className="reveal mt-6 rounded-lg border border-cyanNeon/25 bg-cyanNeon/10 p-6">
+          <p className="text-xs font-bold uppercase text-cyanNeon">Recommended next lesson</p>
+          <p className="mt-2 font-display text-3xl font-bold text-white">How your app remembers information</p>
+          <p className="mt-4 text-base leading-7 text-zinc-300">VibeStudio learns the builder, not just the codebase.</p>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Warm memory"
+          title='"You asked this before."'
+          text="When a question repeats, VibeGuide gently connects it to a previous explanation without making the owner feel stupid."
+        />
+        <div className="grid gap-5 lg:grid-cols-2">
+          {[
+            'You asked a similar question last week when we connected Stripe. This is the same idea: secret keys are private passwords that let your app talk to outside services. This time, the key is for email instead of payments.',
+            "You used to ask what deployment meant. You have launched three updates since then, so I will keep this short: this change is ready to publish, but test login first.",
+          ].map((bubble) => (
+            <div key={bubble} className="guide-bubble reveal">
+              <MessageCircle className="size-5 text-cyanNeon" />
+              <p>{bubble}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Teach me from my own app"
+          title="Generic lessons are not enough."
+          text="VibeGuide does not teach generic software lessons. It explains concepts using the user's actual project."
+        />
+        <div className="grid gap-5">
+          {appTeachingPairs.map(([generic, guide]) => (
+            <div key={generic} className="app-teaching-row reveal">
+              <div>
+                <span>Generic help says</span>
+                <p>{generic}</p>
+              </div>
+              <ArrowRight className="size-5 text-cyanNeon" />
+              <div>
+                <span>VibeGuide says</span>
+                <p>{guide}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Change memory"
+          title="Explain what changed since I last understood it"
+          text="As apps evolve, non-coders lose confidence because they no longer know what changed. VibeGuide can summarise changes in plain English."
+        />
+        <div className="grid gap-5 lg:grid-cols-2">
+          {[
+            'Since your last owner review, we added the builder filter, changed the profile cards, created the VibeStudio page, and updated the navigation. No payment, login, or saved information logic was changed.',
+            'This update changed checkout and order confirmation. Test payments, customer emails, and the admin order view before launch.',
+          ].map((item) => (
+            <div key={item} className="change-summary-card reveal">
+              <GitCompare className="size-5 text-amberSignal" />
+              <p>{item}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <div className="fear-button-panel reveal">
+          <div>
+            <Badge tone="coral" icon={ShieldCheck}>
+              Safety button
+            </Badge>
+            <h2 className="mt-5 font-display text-4xl font-bold leading-tight text-white sm:text-6xl">
+              "I am scared to touch this."
+            </h2>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-zinc-300">
+              This is an actual help button inside VibeStudio. VibeGuide explains what the thing is, why it matters,
+              whether it is safe to change, what could break, what to test after, and whether to ask a builder for help.
+            </p>
+          </div>
+          <div className="fear-response">
+            <p className="text-xs font-bold uppercase text-coral">VibeGuide response</p>
+            <p>
+              This touches payments, so we should slow down. I recommend creating a safe checkpoint first. After the
+              change, test checkout, order confirmation, and admin payment status. Nothing should be launched until
+              those pass.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Human learning moat"
+          title="Help that knows the app and the person"
+          text="Most AI tools focus on the codebase. VibeGuide focuses on the app, the owner, the owner's understanding, the project stage, repeated questions, and confidence gaps."
+        />
+        <div className="reveal rounded-lg border border-amberSignal/30 bg-amberSignal/10 p-7 text-center shadow-coral">
+          <p className="font-display text-3xl font-bold leading-tight text-white sm:text-5xl">
+            Every app can add AI chat. Very few help systems learn the human building it.
+          </p>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <div className="cta-band reveal">
+          <Badge tone="amber" icon={Sparkles}>
+            VibeGuide<sup>&trade;</sup>
+          </Badge>
+          <h2 className="mt-6 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-6xl">
+            Help that does not just answer you. It learns you.
+          </h2>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-zinc-300">
+            VibeGuide is the dedicated help conversation for non-coders who want to understand, maintain, and own what
+            they build.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button to="/vibestudio#owner-mode" icon={ShieldCheck}>
+              Explore Owner Mode
+            </Button>
+            <Button to="/builders" variant="ghost" icon={Sparkles}>
+              Join the VibeStudio Waitlist
+            </Button>
+          </div>
+        </div>
+      </section>
+
       <section className="section-shell">
         <SectionHeader
           eyebrow="Built for domain experts"
@@ -1624,10 +1902,18 @@ function VibeStudioPage() {
           text="Together, Vibe Coder Marketplace and VibeStudio create a new ecosystem: find the right builder, build from real-world experience, ship the first useful version, understand what was built, maintain it safely, and own it forever."
         />
         <div className="ecosystem-flow reveal">
-          {['Vibe Coder Marketplace', 'VibeStudio', 'Owner Mode', 'Handover Pack', 'Long-term ownership'].map((item, index) => (
+          {['Vibe Coder Marketplace', 'VibeStudio', 'Owner Mode', 'VibeGuide', 'Handover Pack', 'Long-term ownership'].map((item, index) => (
             <div key={item} className="ecosystem-node">
               <span>{index + 1}</span>
-              <p>{item}</p>
+              <p>
+                {item === 'VibeGuide' ? (
+                  <>
+                    VibeGuide<sup>&trade;</sup>
+                  </>
+                ) : (
+                  item
+                )}
+              </p>
             </div>
           ))}
         </div>
@@ -1636,8 +1922,8 @@ function VibeStudioPage() {
       <section className="section-shell">
         <SectionHeader
           eyebrow="Defensibility"
-          title="The moat is not just code generation. The moat is ownership."
-          text="AI code generation is becoming common. VibeStudio is built around what happens before and after the code."
+          title="The moat is not only code generation. The moat is ownership and learning memory."
+          text="VibeStudio does not just understand the app. It understands the owner's relationship with the app: what they asked before, where they keep getting stuck, what they have learned, and what they need explained next."
         />
         <div className="grid gap-5 lg:grid-cols-2">
           <ComparisonList
@@ -1658,12 +1944,14 @@ function VibeStudioPage() {
               'Guides safe updates',
               'Creates handover packs',
               'Helps non-coders keep control',
+              'Learns where the owner needs help next',
             ]}
           />
         </div>
         <div className="reveal mt-8 rounded-lg border border-cyanNeon/25 bg-cyanNeon/10 p-7 text-center">
           <p className="font-display text-4xl font-bold text-white">Build + Explain + Maintain + Handover.</p>
           <p className="mt-4 text-xl font-bold text-cyanNeon">Current tools generate software. VibeStudio creates software owners.</p>
+          <p className="mt-3 text-lg font-bold text-amberSignal">VibeGuide helps those owners grow.</p>
         </div>
       </section>
 
@@ -1694,7 +1982,7 @@ function VibeStudioPage() {
 }
 
 function VibeStudioWorkspaceMock() {
-  const tabs = ['Life Map', 'Workflow Map', 'Build Studio', 'Owner Mode', 'Handover Pack'];
+  const tabs = ['Life Map', 'Workflow Map', 'Build Studio', 'Owner Mode', 'Handover Pack', 'VibeGuide'];
   return (
     <div className="studio-mock reveal">
       <div className="studio-topbar">
@@ -1705,8 +1993,14 @@ function VibeStudioWorkspaceMock() {
       </div>
       <div className="studio-tabs">
         {tabs.map((tab, index) => (
-          <span key={tab} className={index === 3 ? 'studio-tab-active' : ''}>
-            {tab}
+          <span key={tab} className={index === 5 ? 'studio-tab-active' : ''}>
+            {tab === 'VibeGuide' ? (
+              <>
+                VibeGuide<sup>&trade;</sup>
+              </>
+            ) : (
+              tab
+            )}
           </span>
         ))}
       </div>
@@ -1718,17 +2012,17 @@ function VibeStudioWorkspaceMock() {
         </div>
         <div className="studio-main-panel">
           <Badge tone="cyan" icon={ShieldCheck}>
-            Owner Mode
+            VibeGuide<sup>&trade;</sup>
           </Badge>
-          <h3>Know what you own.</h3>
+          <h3>Help that learns how you learn.</h3>
           <div className="studio-health-grid">
             {[
-              ['App Health', 'Stable'],
-              ['Last deploy', '2 days ago'],
-              ['Services', '5 connected'],
-              ['Secret keys', 'All active'],
-              ['Mobile check', 'Passed'],
-              ['Known risk', 'Payment webhook'],
+              ['Repeated topic', 'Saved information'],
+              ['Asked', '12 times'],
+              ['Confidence', 'Still learning'],
+              ['Next lesson', 'How data is saved'],
+              ['Safe step', 'Create checkpoint'],
+              ['Tone', 'Warm and plain'],
             ].map(([label, value]) => (
               <div key={label}>
                 <span>{label}</span>
@@ -1738,6 +2032,113 @@ function VibeStudioWorkspaceMock() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function VibeGuideInterface() {
+  return (
+    <div className="vibeguide-interface">
+      <div className="guide-window guide-window-build">
+        <div className="guide-window-head">
+          <Code2 className="size-4 text-ultraviolet" />
+          <span>Build Conversation</span>
+        </div>
+        {['Add a booking page.', 'Create the customer form.', 'Generate the handover pack.'].map((item) => (
+          <div key={item} className="guide-chat-line">
+            {item}
+          </div>
+        ))}
+      </div>
+      <div className="guide-window guide-window-help">
+        <div className="guide-window-head">
+          <MessageCircle className="size-4 text-cyanNeon" />
+          <span>
+            VibeGuide<sup>&trade;</sup> Help Conversation
+          </span>
+        </div>
+        {[
+          'You have asked about saved information 12 times.',
+          'This change touches data storage.',
+          'Want me to explain it using your app?',
+          'Recommended next safe step: create a checkpoint.',
+        ].map((item) => (
+          <div key={item} className="guide-chat-line guide-chat-line-active">
+            {item}
+          </div>
+        ))}
+      </div>
+      <div className="guide-mini-grid">
+        {['Stuck Points', 'Learning Trail', 'Confidence Map', 'Next Safe Step'].map((item) => (
+          <span key={item}>{item}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ConversationPanel({ title, description, items, highlight = false }) {
+  return (
+    <article className={`conversation-panel reveal ${highlight ? 'conversation-panel-highlight' : ''}`}>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-bold uppercase text-cyanNeon">{highlight ? 'Help space' : 'Build space'}</p>
+          <h3>{title}</h3>
+        </div>
+        {highlight ? <MessageCircle className="size-5 text-cyanNeon" /> : <Code2 className="size-5 text-ultraviolet" />}
+      </div>
+      <p>{description}</p>
+      <div className="conversation-examples">
+        {items.map((item) => (
+          <span key={item}>{item}</span>
+        ))}
+      </div>
+    </article>
+  );
+}
+
+function HelpMemoryDashboard({ items }) {
+  return (
+    <div className="help-memory-dashboard reveal">
+      <div className="manual-toolbar">
+        <span>Help Memory</span>
+        <Badge tone="cyan" icon={Bookmark}>
+          Learning profile
+        </Badge>
+      </div>
+      <div className="memory-table">
+        <div className="memory-table-head">
+          <span>Topic</span>
+          <span>Asked</span>
+          <span>Confidence</span>
+          <span>Last asked</span>
+        </div>
+        {items.map(([topic, asked, confidence, lastAsked]) => (
+          <div key={topic} className="memory-table-row">
+            <strong>{topic}</strong>
+            <span>{asked}</span>
+            <span>{confidence}</span>
+            <span>{lastAsked}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ConfidenceMapPanel({ sections }) {
+  return (
+    <div className="confidence-map-panel reveal">
+      {sections.map(([title, items]) => (
+        <article key={title} className="confidence-map-card">
+          <h3>{title}</h3>
+          <div>
+            {items.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+        </article>
+      ))}
     </div>
   );
 }

@@ -117,6 +117,15 @@
   .definition-callout,
   .studio-mock,
   .studio-mode-card,
+  .vibeguide-shell,
+  .vibeguide-interface,
+  .conversation-panel,
+  .help-memory-dashboard,
+  .confidence-map-card,
+  .guide-bubble,
+  .app-teaching-row,
+  .change-summary-card,
+  .fear-button-panel,
   .comparison-list,
   .owner-dashboard,
   .owner-manual,
@@ -164,7 +173,7 @@
   }
 
   .studio-tabs {
-    @apply mt-4 grid gap-2 sm:grid-cols-5;
+    @apply mt-4 grid gap-2 sm:grid-cols-3 lg:grid-cols-6;
   }
 
   .studio-tabs span {
@@ -264,6 +273,163 @@
     @apply rounded-lg border border-white/10 bg-void/60 p-4 text-sm font-semibold leading-6 text-zinc-300;
   }
 
+  .vibeguide-shell {
+    @apply overflow-hidden bg-[radial-gradient(circle_at_16%_8%,rgba(0,229,255,.16),transparent_30%),radial-gradient(circle_at_84%_20%,rgba(255,77,109,.14),transparent_28%),linear-gradient(135deg,rgba(124,58,237,.14),rgba(5,5,10,.88)_55%,rgba(0,229,255,.08))] p-6 shadow-glow sm:p-8 lg:p-10;
+  }
+
+  .vibeguide-interface {
+    @apply grid gap-4 p-4 shadow-cyan;
+  }
+
+  .guide-window {
+    @apply rounded-lg border border-white/10 bg-void/65 p-4;
+  }
+
+  .guide-window-help {
+    @apply border-cyanNeon/30 bg-cyanNeon/10 shadow-cyan;
+  }
+
+  .guide-window-build {
+    @apply border-violetRoyal/35 bg-violetRoyal/10;
+  }
+
+  .guide-window-head {
+    @apply mb-4 flex items-center gap-2 border-b border-white/10 pb-3 text-xs font-bold uppercase text-zinc-400;
+  }
+
+  .guide-chat-line {
+    @apply mb-2 rounded-md border border-white/10 bg-white/[.045] px-3 py-2 text-sm font-semibold leading-6 text-zinc-300;
+  }
+
+  .guide-chat-line-active {
+    @apply border-cyanNeon/25 bg-cyanNeon/10 text-white;
+  }
+
+  .guide-mini-grid {
+    @apply grid gap-2 sm:grid-cols-2;
+  }
+
+  .guide-mini-grid span {
+    @apply rounded-md border border-amberSignal/25 bg-amberSignal/10 px-3 py-2 text-center text-xs font-bold text-amberSignal;
+  }
+
+  .conversation-panel {
+    @apply p-6 shadow-glow;
+  }
+
+  .conversation-panel-highlight {
+    @apply border-cyanNeon/25 bg-cyanNeon/10 shadow-cyan;
+  }
+
+  .conversation-panel h3 {
+    @apply mt-2 font-display text-3xl font-bold text-white;
+  }
+
+  .conversation-panel p {
+    @apply mt-4 text-sm leading-7 text-zinc-400;
+  }
+
+  .conversation-examples {
+    @apply mt-6 grid gap-3;
+  }
+
+  .conversation-examples span {
+    @apply rounded-md border border-white/10 bg-void/60 px-3 py-2 text-sm font-semibold text-zinc-300;
+  }
+
+  .help-memory-dashboard {
+    @apply overflow-x-auto p-5 shadow-cyan;
+  }
+
+  .memory-table {
+    @apply mt-5 min-w-[680px] overflow-hidden rounded-lg border border-white/10;
+  }
+
+  .memory-table-head,
+  .memory-table-row {
+    @apply grid grid-cols-[1.25fr_.75fr_1fr_.85fr] gap-3 px-4 py-3 text-sm;
+  }
+
+  .memory-table-head {
+    @apply bg-white/[.06] text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .memory-table-row {
+    @apply border-t border-white/10 text-zinc-300;
+  }
+
+  .memory-table-row strong {
+    @apply font-display text-white;
+  }
+
+  .memory-chip {
+    @apply flex items-center gap-3 rounded-lg border border-amberSignal/25 bg-amberSignal/10 p-4 text-sm font-bold text-zinc-200;
+  }
+
+  .confidence-map-panel {
+    @apply grid gap-4 md:grid-cols-2;
+  }
+
+  .confidence-map-card {
+    @apply p-5;
+  }
+
+  .confidence-map-card h3 {
+    @apply font-display text-2xl font-bold text-white;
+  }
+
+  .confidence-map-card div {
+    @apply mt-5 grid gap-2;
+  }
+
+  .confidence-map-card span {
+    @apply rounded-md border border-white/10 bg-white/[.045] px-3 py-2 text-sm font-semibold text-zinc-300;
+  }
+
+  .guide-bubble {
+    @apply flex items-start gap-4 border-cyanNeon/20 bg-cyanNeon/10 p-6 shadow-cyan;
+  }
+
+  .guide-bubble p {
+    @apply text-base leading-8 text-zinc-200;
+  }
+
+  .app-teaching-row {
+    @apply grid gap-4 p-5 md:grid-cols-[1fr_40px_1.2fr] md:items-center;
+  }
+
+  .app-teaching-row div {
+    @apply rounded-lg border border-white/10 bg-void/55 p-4;
+  }
+
+  .app-teaching-row span {
+    @apply text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .app-teaching-row p {
+    @apply mt-2 text-sm font-semibold leading-7 text-zinc-200;
+  }
+
+  .change-summary-card {
+    @apply flex items-start gap-4 border-amberSignal/25 bg-amberSignal/10 p-6 shadow-coral;
+  }
+
+  .change-summary-card p {
+    @apply text-base leading-8 text-zinc-200;
+  }
+
+  .fear-button-panel {
+    @apply grid gap-6 border-coral/25 bg-coral/10 p-6 shadow-coral lg:grid-cols-[1fr_.82fr] lg:p-8;
+  }
+
+  .fear-response {
+    @apply rounded-lg border border-coral/30 bg-void/70 p-5;
+  }
+
+  .fear-response p:last-child {
+    @apply mt-4 text-base font-semibold leading-8 text-zinc-200;
+  }
+
   .safe-flow {
     @apply grid gap-3 md:grid-cols-2 xl:grid-cols-7;
   }
@@ -325,7 +491,7 @@
   }
 
   .ecosystem-flow {
-    @apply grid gap-4 md:grid-cols-5;
+    @apply grid gap-4 md:grid-cols-3 xl:grid-cols-6;
   }
 
   .ecosystem-node {
