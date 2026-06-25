@@ -51,24 +51,58 @@ const navLinks = [
   ['For Builders', '/builders'],
 ];
 
-function useScrollReveal() {
+function useScrollReveal(refreshKey) {
   useEffect(() => {
-    const nodes = document.querySelectorAll('.reveal');
+    const nodes = Array.from(document.querySelectorAll('.reveal'));
+
+    if (!nodes.length) {
+      return undefined;
+    }
+
+    const makeVisible = (node) => node.classList.add('is-visible');
+    const fallbackTimer = window.setTimeout(() => {
+      nodes.forEach(makeVisible);
+    }, 450);
+
+    if (!('IntersectionObserver' in window)) {
+      nodes.forEach(makeVisible);
+      window.clearTimeout(fallbackTimer);
+      return undefined;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
+            makeVisible(entry.target);
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.14 },
+      { rootMargin: '0px 0px -6% 0px', threshold: 0.08 },
     );
 
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  });
+    nodes.forEach((node) => {
+      if (!node.classList.contains('is-visible')) {
+        observer.observe(node);
+      }
+    });
+
+    window.requestAnimationFrame(() => {
+      nodes.forEach((node) => {
+        const rect = node.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          makeVisible(node);
+          observer.unobserve(node);
+        }
+      });
+    });
+
+    return () => {
+      window.clearTimeout(fallbackTimer);
+      observer.disconnect();
+    };
+  }, [refreshKey]);
 }
 
 function ScrollToTop() {
@@ -82,7 +116,8 @@ function ScrollToTop() {
 }
 
 function App() {
-  useScrollReveal();
+  const location = useLocation();
+  useScrollReveal(`${location.pathname}${location.search}${location.hash}`);
 
   return (
     <div className="min-h-screen overflow-hidden bg-void text-slate-100">
