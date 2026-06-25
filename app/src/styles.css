@@ -126,6 +126,8 @@
   .app-teaching-row,
   .change-summary-card,
   .fear-button-panel,
+  .nuance-card,
+  .nuance-case-card,
   .comparison-list,
   .owner-dashboard,
   .owner-manual,
@@ -428,6 +430,50 @@
 
   .fear-response p:last-child {
     @apply mt-4 text-base font-semibold leading-8 text-zinc-200;
+  }
+
+  .nuance-card {
+    @apply p-5 transition hover:-translate-y-1 hover:border-cyanNeon/35 hover:bg-cyanNeon/10 hover:shadow-cyan;
+  }
+
+  .nuance-card h3 {
+    @apply mt-5 font-display text-2xl font-bold text-white;
+  }
+
+  .nuance-card p {
+    @apply mt-4 text-sm leading-7 text-zinc-400;
+  }
+
+  .nuance-case-card {
+    @apply grid gap-6 border-amberSignal/25 bg-amberSignal/10 p-6 shadow-coral lg:grid-cols-[.82fr_1.18fr];
+  }
+
+  .nuance-case-card h3 {
+    @apply mt-5 font-display text-3xl font-bold text-white;
+  }
+
+  .nuance-case-card p {
+    @apply mt-4 text-base leading-8 text-zinc-300;
+  }
+
+  .nuance-split {
+    @apply grid gap-4 md:grid-cols-[1fr_40px_1fr] md:items-center;
+  }
+
+  .nuance-split div {
+    @apply rounded-lg border border-white/10 bg-void/60 p-4;
+  }
+
+  .nuance-split span {
+    @apply text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .nuance-split p {
+    @apply mt-2 text-sm font-semibold leading-7 text-zinc-200;
+  }
+
+  .nuance-warning {
+    @apply mt-6 rounded-lg border border-cyanNeon/25 bg-cyanNeon/10 p-5 text-center font-display text-2xl font-bold leading-tight text-white shadow-cyan;
   }
 
   .safe-flow {

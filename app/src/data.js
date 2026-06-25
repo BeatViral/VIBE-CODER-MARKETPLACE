@@ -510,6 +510,8 @@ export const comparisonRows = [
   ['Asks "what stack?"', 'Asks "what pain?"'],
   ['Technical-first', 'Problem-first'],
   ['Knows how to build', 'Knows why it matters'],
+  ['Matches by technical skill', 'Matches by industry fluency'],
+  ['Can flatten nuance to fit the brief', 'Protects the details that make the idea work'],
 ];
 
 export const comparisonCards = [
@@ -519,6 +521,7 @@ export const comparisonCards = [
   ['May build skyscrapers for lemonade stands', 'Builds lemonade stands that sell lemonade'],
   ['Sees technical constraints', 'Sees practical possibilities'],
   ['Knowledge-based builder', 'Experience-based builder'],
+  ['Can bend the idea into their comfort zone', "Builds around the founder's domain reality"],
 ];
 
 export const examples = [
@@ -535,10 +538,10 @@ export const examples = [
     vibe: 'A farmer who vibe codes builds from inside farming: mud, rain, timing, breakdowns, and harvest chaos.',
   },
   {
-    title: 'Music software',
+    title: 'Music and commercial workflow',
     icon: Music2,
-    coder: 'A coder builds a file manager with features.',
-    vibe: 'A producer who vibe codes builds a workflow tool that helps artists actually finish songs.',
+    coder: 'A generic builder may make the audio fit the time slot and miss the damage done to the song.',
+    vibe: 'A music-domain vibe coder knows to protect the hook, timing, energy, and emotional shape of the track.',
   },
   {
     title: 'Legal call platform',

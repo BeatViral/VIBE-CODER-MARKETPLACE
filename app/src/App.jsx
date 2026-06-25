@@ -356,7 +356,8 @@ function Hero() {
             The marketplace for <span className="gradient-text">experience-first AI builders</span>
           </h1>
           <p className="mt-6 max-w-2xl text-xl leading-9 text-zinc-200">
-            We do not match you with generic coders. We match you with builders who understand your world.
+            We do not match you with generic coders. We match you with builders who understand your world and protect
+            the nuance inside your idea.
           </p>
           <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-400 sm:text-lg">
             Find doctors, farmers, producers, chefs, traders, operators, teachers, and real-life experts who use AI to
@@ -420,7 +421,8 @@ function Hero() {
             <p className="text-xs font-semibold uppercase text-cyanNeon">Marketplace signal</p>
             <p className="mt-3 font-display text-2xl font-bold leading-tight text-white">The stack tells you how. Experience tells you where the product breaks.</p>
             <p className="mt-3 text-sm leading-6 text-zinc-300">
-              Vibe Coder Marketplace matches founders with people who know the workflow before the first feature list.
+              A healthcare founder can zero in on builders who understand healthcare. A music founder can find someone
+              who hears the difference between a cut and a broken song.
             </p>
             <div className="mt-4 grid grid-cols-2 gap-2">
               <span className="mini-signal">pain first</span>
@@ -980,6 +982,21 @@ function MarketList({ title, builders: list }) {
 }
 
 function DifferencePage() {
+  const nuancePoints = [
+    [
+      'Industry fluency',
+      'A healthcare founder can search for a healthcare-aware vibe coder, not just a generic app builder. The match starts with the world the product must survive in.',
+    ],
+    [
+      'Nuance protection',
+      'Generic coders can unintentionally bend the idea to fit the brief, the stack, or the easiest implementation path. Vibe coders notice which details must not be flattened.',
+    ],
+    [
+      'Better partnership',
+      'The best builder is not always the most technical person. It is often the person who understands the pressure, language, customers, edge cases, and invisible rules of the domain.',
+    ],
+  ];
+
   return (
     <section className="page-shell">
       <div className="mx-auto max-w-7xl">
@@ -1009,6 +1026,49 @@ function DifferencePage() {
             Founders do not only need someone who can code. They need someone who understands why the thing matters.
           </p>
         </div>
+
+        <section className="reveal my-14">
+          <SectionHeader
+            eyebrow="The nuance advantage"
+            title="The right vibe coder protects the idea from being flattened."
+            text="This is why the marketplace matters. You are not only searching for someone who can build. You are searching for someone whose lived context matches the world your product belongs to."
+          />
+          <div className="grid gap-5 lg:grid-cols-3">
+            {nuancePoints.map(([title, text]) => (
+              <article key={title} className="nuance-card">
+                <ShieldCheck className="size-5 text-cyanNeon" />
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+          <div className="nuance-case-card mt-6">
+            <div>
+              <Badge tone="amber" icon={Heart}>
+                Creative nuance
+              </Badge>
+              <h3>Small misunderstanding. Big damage.</h3>
+              <p>
+                Give a 60-second song to someone who does not understand music and ask for a 30-second commercial, and
+                they might simply speed the song up. The brief is technically satisfied, but the feeling is destroyed.
+              </p>
+            </div>
+            <div className="nuance-split">
+              <div>
+                <span>Generic execution</span>
+                <p>Make it fit the required length.</p>
+              </div>
+              <ArrowRight className="size-5 text-cyanNeon" />
+              <div>
+                <span>Domain-aware execution</span>
+                <p>Cut the arrangement with taste, protect the hook, and keep the emotional timing intact.</p>
+              </div>
+            </div>
+          </div>
+          <div className="nuance-warning">
+            A vibe coder does not just pass the brief. They understand what should never be changed.
+          </div>
+        </section>
 
         <div className="reveal overflow-hidden rounded-lg border border-white/10">
           <div className="grid grid-cols-2 bg-white/[.06]">
@@ -1241,13 +1301,13 @@ function FoundersPage() {
         <PageHero
           badge="For founders"
           title="Find a builder who already understands your world."
-          text="You should not have to spend hours translating your industry to someone who only knows frameworks. Discover experience-first AI builders who understand the workflow, bottlenecks, pressure, customers, and friction before they build."
+          text="You should not have to spend hours translating your industry to someone who only knows frameworks. A healthcare founder can find healthcare fluency. A music founder can find creative fluency. Discover experience-first AI builders who understand the workflow, bottlenecks, pressure, customers, and friction before they build."
         />
         <WorkflowGrid
           items={[
             ['Post your idea', 'Describe the problem, the customer, and the domain pressure.'],
             ['Browse experience-first builders', 'Search by profession, industry, AI tools, proof, and availability.'],
-            ['Match by real-life profession', 'Find people who have lived the workflow you are building for.'],
+            ['Match by domain nuance', 'Find people who have lived the workflow and know what should never be flattened.'],
             ['Start a scoped MVP', 'Turn the idea into a sharp first version with visible milestones.'],
             ['Keep ownership and clarity', 'Founder-owned repo, assets, handover docs, and build history.'],
             ['Launch faster', 'Ship the useful proof before the market moment passes.'],
