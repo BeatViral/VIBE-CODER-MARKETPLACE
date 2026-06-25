@@ -115,6 +115,11 @@
   .market-snapshot,
   .builder-card,
   .definition-callout,
+  .studio-mock,
+  .studio-mode-card,
+  .comparison-list,
+  .owner-dashboard,
+  .owner-manual,
   .signature-card,
   .category-card,
   .track-card,
@@ -140,6 +145,199 @@
 
   .definition-callout-compact {
     @apply mt-8 max-w-4xl;
+  }
+
+  .studio-mock {
+    @apply overflow-hidden p-4 shadow-glow;
+  }
+
+  .studio-topbar {
+    @apply flex items-center gap-2 border-b border-white/10 pb-4 text-sm text-zinc-400;
+  }
+
+  .studio-topbar strong {
+    @apply ml-2 font-display text-sm font-bold text-white;
+  }
+
+  .studio-dot {
+    @apply size-3 rounded-full;
+  }
+
+  .studio-tabs {
+    @apply mt-4 grid gap-2 sm:grid-cols-5;
+  }
+
+  .studio-tabs span {
+    @apply rounded-md border border-white/10 bg-white/[.045] px-3 py-2 text-center text-xs font-bold text-zinc-400;
+  }
+
+  .studio-tabs .studio-tab-active {
+    @apply border-cyanNeon/45 bg-cyanNeon/10 text-cyanNeon shadow-cyan;
+  }
+
+  .studio-body {
+    @apply mt-5 grid gap-4 lg:grid-cols-[190px_1fr];
+  }
+
+  .studio-sidebar {
+    @apply grid gap-2;
+  }
+
+  .studio-sidebar span {
+    @apply rounded-md border border-white/10 bg-void/50 px-3 py-2 text-xs font-semibold text-zinc-400;
+  }
+
+  .studio-main-panel {
+    @apply rounded-lg border border-cyanNeon/20 bg-[linear-gradient(135deg,rgba(0,229,255,.1),rgba(124,58,237,.16),rgba(255,77,109,.08))] p-5;
+  }
+
+  .studio-main-panel h3 {
+    @apply mt-4 font-display text-3xl font-bold text-white;
+  }
+
+  .studio-health-grid {
+    @apply mt-5 grid gap-3 sm:grid-cols-2;
+  }
+
+  .studio-health-grid div,
+  .owner-health-card {
+    @apply rounded-md border border-white/10 bg-void/55 p-3;
+  }
+
+  .studio-health-grid span,
+  .owner-health-card span {
+    @apply block text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .studio-health-grid strong,
+  .owner-health-card strong {
+    @apply mt-1 block font-display text-sm font-bold text-white;
+  }
+
+  .pull-quote {
+    @apply rounded-lg border border-amberSignal/30 bg-amberSignal/10 p-6 font-display text-3xl font-bold leading-tight text-white shadow-coral;
+  }
+
+  .translation-grid {
+    @apply grid gap-3 md:grid-cols-2;
+  }
+
+  .translation-row {
+    @apply grid grid-cols-[1fr_28px_1fr] items-center gap-3 rounded-lg border border-white/10 bg-white/[.045] p-4 transition hover:border-cyanNeon/40 hover:bg-cyanNeon/10;
+  }
+
+  .translation-row span {
+    @apply text-sm font-semibold text-zinc-500;
+  }
+
+  .translation-row strong {
+    @apply text-sm font-bold text-white;
+  }
+
+  .comparison-list {
+    @apply p-5;
+  }
+
+  .comparison-list h3 {
+    @apply font-display text-2xl font-bold text-white;
+  }
+
+  .comparison-list-muted {
+    @apply bg-white/[.025];
+  }
+
+  .comparison-list-row,
+  .question-row,
+  .manual-section-chip {
+    @apply flex items-start gap-3 rounded-lg border border-white/10 bg-white/[.045] p-4 text-sm leading-6 text-zinc-300;
+  }
+
+  .studio-mode-card {
+    @apply grid gap-6 p-5 lg:grid-cols-[.82fr_1.18fr];
+  }
+
+  .studio-fields {
+    @apply grid gap-3 sm:grid-cols-2;
+  }
+
+  .studio-fields span {
+    @apply rounded-lg border border-white/10 bg-void/60 p-4 text-sm font-semibold leading-6 text-zinc-300;
+  }
+
+  .safe-flow {
+    @apply grid gap-3 md:grid-cols-2 xl:grid-cols-7;
+  }
+
+  .safe-step {
+    @apply rounded-lg border border-white/10 bg-white/[.045] p-4 transition hover:border-cyanNeon/40 hover:bg-cyanNeon/10;
+  }
+
+  .safe-step span {
+    @apply grid size-9 place-items-center rounded-md bg-gradient-to-br from-violetRoyal to-cyanNeon font-display text-sm font-bold text-white;
+  }
+
+  .safe-step p {
+    @apply mt-4 text-sm font-semibold leading-6 text-zinc-300;
+  }
+
+  .prompt-card {
+    @apply mt-6 rounded-lg border border-amberSignal/30 bg-amberSignal/10 p-5;
+  }
+
+  .owner-dashboard {
+    @apply p-5 shadow-cyan;
+  }
+
+  .owner-manual {
+    @apply p-6 shadow-glow;
+  }
+
+  .manual-toolbar {
+    @apply flex items-center justify-between gap-3 border-b border-white/10 pb-4 text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .owner-manual h3 {
+    @apply mt-6 font-display text-4xl font-bold text-white;
+  }
+
+  .owner-manual p {
+    @apply mt-4 text-sm leading-7 text-zinc-400;
+  }
+
+  .manual-lines {
+    @apply mt-6 grid gap-3;
+  }
+
+  .manual-lines span {
+    @apply rounded-md border border-white/10 bg-white/[.045] px-3 py-2 text-sm font-semibold text-zinc-300;
+  }
+
+  .expert-card {
+    @apply rounded-lg border border-white/10 bg-white/[.045] p-5 transition hover:-translate-y-1 hover:border-amberSignal/40 hover:bg-amberSignal/10;
+  }
+
+  .expert-card h3 {
+    @apply mt-4 font-display text-xl font-bold text-white;
+  }
+
+  .expert-card p {
+    @apply mt-2 text-sm font-semibold text-cyanNeon;
+  }
+
+  .ecosystem-flow {
+    @apply grid gap-4 md:grid-cols-5;
+  }
+
+  .ecosystem-node {
+    @apply relative rounded-lg border border-cyanNeon/20 bg-cyanNeon/10 p-5 text-center shadow-cyan;
+  }
+
+  .ecosystem-node span {
+    @apply mx-auto grid size-9 place-items-center rounded-md bg-gradient-to-br from-violetRoyal to-cyanNeon font-display text-sm font-bold text-white;
+  }
+
+  .ecosystem-node p {
+    @apply mt-4 font-display text-lg font-bold leading-tight text-white;
   }
 
   .hero-visual {

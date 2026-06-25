@@ -44,11 +44,26 @@ const brandMark = `${import.meta.env.BASE_URL}favicon.svg`;
 const navLinks = [
   ['Home', '/'],
   ['Browse Builders', '/browse'],
+  ['VibeStudio', '/vibestudio'],
   ['Difference', '/difference'],
   ['Are You a Vibe Coder?', '/vibe-coder-if'],
   ['Manifesto', '/manifesto'],
   ['For Founders', '/founders'],
   ['For Builders', '/builders'],
+];
+
+const footerLinks = [
+  ['About', '/'],
+  ['Browse Builders', '/browse'],
+  ['VibeStudio', '/vibestudio'],
+  ['Difference', '/difference'],
+  ['Manifesto', '/manifesto'],
+  ['For Founders', '/founders'],
+  ['For Builders', '/builders'],
+  ['Categories', '/browse'],
+  ['Contact', '/'],
+  ['Terms', '/'],
+  ['Privacy', '/'],
 ];
 
 function useScrollReveal(refreshKey) {
@@ -109,8 +124,19 @@ function ScrollToTop() {
   const location = useLocation();
 
   useEffect(() => {
+    if (location.hash) {
+      const target = document.getElementById(location.hash.slice(1));
+
+      if (target) {
+        window.requestAnimationFrame(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        return;
+      }
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [location.pathname]);
+  }, [location.hash, location.pathname]);
 
   return null;
 }
@@ -129,6 +155,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/browse" element={<BrowsePage />} />
           <Route path="/difference" element={<DifferencePage />} />
+          <Route path="/vibestudio" element={<VibeStudioPage />} />
           <Route path="/vibe-coder-if" element={<VibeCoderIfPage />} />
           <Route path="/profile/:id" element={<ProfilePage />} />
           <Route path="/founders" element={<FoundersPage />} />
@@ -164,7 +191,7 @@ function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-void/[.78] backdrop-blur-xl">
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <nav className="mx-auto flex h-20 max-w-[100rem] items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="group flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
           <BrandMark />
           <span className="min-w-0">
@@ -183,7 +210,7 @@ function Navbar() {
           ))}
         </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 min-[1700px]:flex">
           <Button to="/browse" variant="ghost" icon={Search}>
             Find a Vibe Coder
           </Button>
@@ -1257,6 +1284,519 @@ function BuildersPage() {
   );
 }
 
+function VibeStudioPage() {
+  const translations = [
+    ['Routes', 'Pages'],
+    ['Database schema', 'Saved information'],
+    ['APIs', 'Outside services'],
+    ['Environment variables', 'Secret keys'],
+    ['Commits', 'What changed'],
+    ['Dependency risk', 'What might break'],
+    ['QA pipeline', 'Check before launch'],
+    ['Technical documentation', 'Owner Manual'],
+    ['Deployment logs', 'Launch status'],
+    ['Pull request', 'Proposed change'],
+    ['Rollback', 'Go back to last safe version'],
+    ['Repository', 'App source folder'],
+  ];
+
+  const modes = [
+    {
+      name: 'Life Map',
+      text:
+        'VibeStudio begins with who you are in real life and what problem you understand. Instead of starting with code, it asks what you have lived, what workflow breaks, who suffers, and what a generic coder would miss.',
+      phrase: 'Start with lived context, not files.',
+      fields: [
+        'In real life, I am a...',
+        'The problem I understand is...',
+        'The workflow that breaks is...',
+        'The user suffering from this is...',
+        'The current workaround is...',
+        'What a generic coder would miss is...',
+      ],
+    },
+    {
+      name: 'Workflow Map',
+      text:
+        'Turn lived experience into a clear product map. VibeStudio identifies users, pain points, decision points, bottlenecks, screens, saved information, risks, and the first useful version.',
+      phrase: 'Do not build everything. Build the first useful version.',
+      fields: ['Users', 'Pain points', 'Bottlenecks', 'Screens', 'Risks', 'First useful version'],
+    },
+    {
+      name: 'Build Studio',
+      text:
+        'Generate screens, app logic, data structure, build prompts, and implementation plans in plain English. VibeStudio can create Codex, Replit, and Lovable-ready prompts before it becomes a full build engine.',
+      phrase: 'From real-world knowledge to build-ready instructions.',
+      fields: ['Screens', 'App logic', 'Saved information', 'Build prompts', 'Implementation plan'],
+    },
+    {
+      name: 'Owner Mode',
+      text:
+        'Owner Mode explains what your app is made of, what services it uses, what costs money, what can break, what not to touch, and how to update safely.',
+      phrase: 'Know what you own. Know how to keep it alive.',
+      fields: ['App health', 'Services', 'Costs', 'Risks', 'Safe updates', 'What not to touch'],
+    },
+    {
+      name: 'Handover Pack',
+      text:
+        'Every project gets an exportable handover package that makes the app understandable to the founder, the builder, or any future developer.',
+      phrase: 'A clean bridge from build to long-term ownership.',
+      fields: ['App summary', 'Service list', 'Secret keys checklist', 'Testing checklist', 'Maintenance plan'],
+    },
+  ];
+
+  const ownerManual = [
+    'What this app does',
+    'Who uses it',
+    'What pages it has',
+    'What information it saves',
+    'What outside services it uses',
+    'What secret keys are needed',
+    'What it costs to run',
+    'What can break',
+    'What not to touch',
+    'How to test it',
+    'How to update it safely',
+    'How to hand it to another builder',
+  ];
+
+  const expertCards = [
+    ['Doctors', 'clinical tools'],
+    ['Farmers', 'ag-tech'],
+    ['Producers', 'creator tools'],
+    ['Chefs', 'kitchen systems'],
+    ['Traders', 'dashboards'],
+    ['Paralegals', 'legal intake'],
+    ['Teachers', 'learning tools'],
+    ['Operators', 'workflow tools'],
+  ];
+
+  return (
+    <section className="relative z-10">
+      <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[.92fr_1.08fr] lg:px-8 lg:py-20">
+        <div className="reveal">
+          <Badge tone="amber" icon={Sparkles}>
+            Second product
+          </Badge>
+          <h1 className="mt-6 font-display text-6xl font-bold leading-tight text-white sm:text-8xl">VibeStudio</h1>
+          <p className="mt-5 max-w-3xl font-display text-3xl font-bold leading-tight text-white sm:text-5xl">
+            Build it. Ship it. <span className="gradient-text">Own it. Forever.</span>
+          </p>
+          <p className="mt-6 max-w-2xl text-xl leading-9 text-zinc-200">
+            The no-jargon build environment for domain experts.
+          </p>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-400 sm:text-lg">
+            VibeStudio is where domain experts build real apps without code, without developer dependency, and without
+            being abandoned after launch.
+          </p>
+          <div className="mt-6 max-w-2xl rounded-lg border border-cyanNeon/20 bg-cyanNeon/10 p-5 text-sm leading-7 text-zinc-200">
+            Most AI tools help you create software. VibeStudio helps you understand, maintain, update, hand over, and
+            own it.
+          </div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button to="/vibestudio" icon={Rocket}>
+              Explore VibeStudio
+            </Button>
+            <Button to="/builders" variant="ghost" icon={Sparkles}>
+              Join the Waitlist
+            </Button>
+            <Button to="/vibestudio#how-it-works" variant="ghost" icon={Workflow}>
+              See How It Works
+            </Button>
+          </div>
+        </div>
+        <VibeStudioWorkspaceMock />
+      </div>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Why VibeStudio exists"
+          title="Coding has evolved into language. But most coding tools still speak like coding tools."
+          text="AI has changed how software gets built. A person can describe an app in plain language and AI can help generate the code, but most tools still drop non-coders back into files, errors, dependencies, frameworks, terminals, APIs, commits, environment variables, deployment settings, and build logs."
+        />
+        <div className="grid gap-5 lg:grid-cols-[1fr_.72fr]">
+          <div className="feature-card reveal">
+            <p className="text-lg leading-9 text-zinc-300">
+              For non-coders, that is where the fear begins. VibeStudio is built for people who know the problem, not
+              the jargon. It does not just let you talk to AI. It makes the entire build environment understandable.
+            </p>
+            <p className="mt-6 text-lg leading-9 text-zinc-300">
+              Because if the future of coding is language, the future of the IDE must be plain English.
+            </p>
+          </div>
+          <div className="pull-quote reveal">
+            Coding has evolved into language. Now the environment has to evolve too.
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="No-jargon environment"
+          title="No jargon. No mystery code. No abandoned app."
+          text="VibeStudio does not hide complexity. It translates it. You still get serious software, but the environment speaks in words a real owner can understand."
+        />
+        <div className="translation-grid reveal">
+          {translations.map(([technical, plain]) => (
+            <div key={technical} className="translation-row">
+              <span>{technical}</span>
+              <ArrowRight className="size-4 text-cyanNeon" />
+              <strong>{plain}</strong>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Different from AI IDEs"
+          title="Most tools help you build. VibeStudio helps you own."
+        />
+        <div className="grid gap-5 lg:grid-cols-2">
+          <ComparisonList
+            title="Other AI coding tools"
+            muted
+            items={[
+              'Help you generate an app',
+              'Focus on code, files, previews, and deployment',
+              'Assume you can interpret technical errors',
+              'Often stop at launch',
+              'Leave maintenance unclear',
+              'Make ownership feel fragile',
+            ]}
+          />
+          <ComparisonList
+            title="VibeStudio"
+            items={[
+              'Starts with your lived experience',
+              'Builds from real-world workflows',
+              'Explains every part in plain English',
+              'Creates an Owner Manual automatically',
+              'Shows what can break and how to maintain it',
+              'Creates handover packs and safe update flows',
+            ]}
+          />
+        </div>
+        <div className="reveal mt-8 rounded-lg border border-amberSignal/25 bg-amberSignal/10 p-6 text-center font-display text-3xl font-bold text-white">
+          Build is only half the product. Ownership is the other half.
+        </div>
+      </section>
+
+      <section id="how-it-works" className="section-shell">
+        <SectionHeader
+          eyebrow="Five modes"
+          title="The five modes of VibeStudio"
+          text="Each mode turns lived experience into an understandable product, then keeps the owner in control after launch."
+        />
+        <div className="grid gap-5">
+          {modes.map((mode, index) => (
+            <article key={mode.name} className="studio-mode-card reveal">
+              <div>
+                <span className="number-mark">{String(index + 1).padStart(2, '0')}</span>
+                <h3 className="mt-5 font-display text-3xl font-bold text-white">{mode.name}</h3>
+                <p className="mt-4 text-sm leading-7 text-zinc-400">{mode.text}</p>
+                <p className="mt-5 border-l-2 border-cyanNeon/70 pl-4 text-sm font-bold leading-6 text-cyanNeon">
+                  {mode.phrase}
+                </p>
+              </div>
+              <div className="studio-fields">
+                {mode.fields.map((field) => (
+                  <span key={field}>{field}</span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Owner Mode"
+          title="Owner Mode is the missing layer every AI IDE forgot."
+          text="Most AI coding tools behave like: Here is your app. Good luck. That is not enough for non-coders. The bigger fear is what happens after it is built."
+        />
+        <div className="grid gap-6 lg:grid-cols-[.9fr_1.1fr]">
+          <div className="feature-card reveal">
+            {[
+              'Who updates it?',
+              'What breaks if something changes?',
+              'What does it cost to run?',
+              'Where is the data?',
+              'What services does it depend on?',
+              'What should never be touched?',
+              'How do you ask AI to change it safely?',
+            ].map((question) => (
+              <div key={question} className="question-row">
+                <MessageCircle className="size-4 text-cyanNeon" />
+                <span>{question}</span>
+              </div>
+            ))}
+          </div>
+          <OwnerModeDashboard />
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Safe Update Flow"
+          title="Update without breaking everything."
+          text="For non-coders, changing an app after launch can feel dangerous. VibeStudio plans, explains, tests, and makes every change reversible."
+        />
+        <div className="safe-flow reveal">
+          {[
+            'Describe the change in plain English',
+            'Identify affected pages, saved information, and outside services',
+            'Explain what might break',
+            'Create a safe checkpoint',
+            'Apply the change',
+            'Run the plain-English test checklist',
+            'Launch or go back to the last safe version',
+          ].map((step, index) => (
+            <div key={step} className="safe-step">
+              <span>{index + 1}</span>
+              <p>{step}</p>
+            </div>
+          ))}
+        </div>
+        <div className="prompt-card reveal">
+          <p className="text-xs font-bold uppercase text-amberSignal">Generated safe prompt</p>
+          <p className="mt-3 text-base leading-8 text-zinc-200">
+            "I want to add a new booking field. First inspect the current app structure, identify affected pages and
+            saved information, explain the plan in plain English, then wait for approval before editing."
+          </p>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Owner Manual"
+          title="Every app gets an Owner Manual."
+          text="This is not technical documentation written for engineers. It is a plain-English guide that helps the owner understand the product, maintain it, update it, and hand it over safely."
+        />
+        <div className="grid gap-6 lg:grid-cols-[1fr_.9fr]">
+          <div className="owner-manual reveal">
+            <div className="manual-toolbar">
+              <span>Owner Manual</span>
+              <Badge tone="green" icon={CheckCircle2}>
+                Living doc
+              </Badge>
+            </div>
+            <h3>KitchenDrop owner guide</h3>
+            <p>Plain-English product map, service list, risks, tests, and safe future prompts.</p>
+            <div className="manual-lines">
+              {ownerManual.slice(0, 8).map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+          </div>
+          <div className="grid gap-3">
+            {ownerManual.map((item) => (
+              <div key={item} className="manual-section-chip reveal">
+                <CheckCircle2 className="size-4 text-acid" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Built for domain experts"
+          title="Built for people who know the problem, not the jargon."
+          text="VibeStudio does not ask you to think like a developer. It asks you to think like the person who has lived the problem."
+        />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {expertCards.map(([who, what]) => (
+            <div key={who} className="expert-card reveal">
+              <Sparkles className="size-5 text-amberSignal" />
+              <h3>{who}</h3>
+              <p>building {what}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Ecosystem"
+          title="Marketplace finds the builder. VibeStudio keeps the build alive."
+          text="Together, Vibe Coder Marketplace and VibeStudio create a new ecosystem: find the right builder, build from real-world experience, ship the first useful version, understand what was built, maintain it safely, and own it forever."
+        />
+        <div className="ecosystem-flow reveal">
+          {['Vibe Coder Marketplace', 'VibeStudio', 'Owner Mode', 'Handover Pack', 'Long-term ownership'].map((item, index) => (
+            <div key={item} className="ecosystem-node">
+              <span>{index + 1}</span>
+              <p>{item}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <SectionHeader
+          eyebrow="Defensibility"
+          title="The moat is not just code generation. The moat is ownership."
+          text="AI code generation is becoming common. VibeStudio is built around what happens before and after the code."
+        />
+        <div className="grid gap-5 lg:grid-cols-2">
+          <ComparisonList
+            title="Before the code"
+            items={[
+              'Extracts the real-world problem from lived experience',
+              'Maps workflows before screens',
+              'Asks what a generic coder would miss',
+              'Identifies the first useful version',
+            ]}
+          />
+          <ComparisonList
+            title="After the code"
+            items={[
+              'Explains the app in plain English',
+              'Creates the Owner Manual',
+              'Tracks what can break',
+              'Guides safe updates',
+              'Creates handover packs',
+              'Helps non-coders keep control',
+            ]}
+          />
+        </div>
+        <div className="reveal mt-8 rounded-lg border border-cyanNeon/25 bg-cyanNeon/10 p-7 text-center">
+          <p className="font-display text-4xl font-bold text-white">Build + Explain + Maintain + Handover.</p>
+          <p className="mt-4 text-xl font-bold text-cyanNeon">Current tools generate software. VibeStudio creates software owners.</p>
+        </div>
+      </section>
+
+      <section className="section-shell pb-24">
+        <div className="cta-band reveal">
+          <Badge tone="amber" icon={Rocket}>
+            VibeStudio
+          </Badge>
+          <h2 className="mt-6 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-6xl">
+            Build it. Ship it. Own it. Forever.
+          </h2>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-zinc-300">
+            VibeStudio is the no-jargon build environment for domain experts who want to turn real-world experience into
+            software and keep control after launch.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button to="/builders" icon={Sparkles}>
+              Join the VibeStudio Waitlist
+            </Button>
+            <Button to="/" variant="ghost" icon={Search}>
+              Explore Vibe Coder Marketplace
+            </Button>
+          </div>
+        </div>
+      </section>
+    </section>
+  );
+}
+
+function VibeStudioWorkspaceMock() {
+  const tabs = ['Life Map', 'Workflow Map', 'Build Studio', 'Owner Mode', 'Handover Pack'];
+  return (
+    <div className="studio-mock reveal">
+      <div className="studio-topbar">
+        <span className="studio-dot bg-coral" />
+        <span className="studio-dot bg-amberSignal" />
+        <span className="studio-dot bg-acid" />
+        <strong>VibeStudio workspace</strong>
+      </div>
+      <div className="studio-tabs">
+        {tabs.map((tab, index) => (
+          <span key={tab} className={index === 3 ? 'studio-tab-active' : ''}>
+            {tab}
+          </span>
+        ))}
+      </div>
+      <div className="studio-body">
+        <div className="studio-sidebar">
+          {['App summary', 'Pages', 'Saved information', 'Outside services', 'Secret keys', 'Safe updates'].map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </div>
+        <div className="studio-main-panel">
+          <Badge tone="cyan" icon={ShieldCheck}>
+            Owner Mode
+          </Badge>
+          <h3>Know what you own.</h3>
+          <div className="studio-health-grid">
+            {[
+              ['App Health', 'Stable'],
+              ['Last deploy', '2 days ago'],
+              ['Services', '5 connected'],
+              ['Secret keys', 'All active'],
+              ['Mobile check', 'Passed'],
+              ['Known risk', 'Payment webhook'],
+            ].map(([label, value]) => (
+              <div key={label}>
+                <span>{label}</span>
+                <strong>{value}</strong>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ComparisonList({ title, items, muted = false }) {
+  return (
+    <div className={`comparison-list reveal ${muted ? 'comparison-list-muted' : ''}`}>
+      <h3>{title}</h3>
+      <div className="mt-5 grid gap-3">
+        {items.map((item) => (
+          <div key={item} className="comparison-list-row">
+            <CheckCircle2 className={`size-4 ${muted ? 'text-zinc-500' : 'text-acid'}`} />
+            <span>{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function OwnerModeDashboard() {
+  const health = [
+    ['Last deploy', '2 days ago'],
+    ['Services', '5 connected'],
+    ['Secret keys', 'All active'],
+    ['Saved information', '68% free tier used'],
+    ['Login', 'Working'],
+    ['Payments', 'Needs test'],
+    ['Mobile layout', 'Passed'],
+    ['Known risk', 'Payment webhook not verified'],
+  ];
+
+  return (
+    <div className="owner-dashboard reveal">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-bold uppercase text-cyanNeon">App Health</p>
+          <h3 className="mt-2 font-display text-3xl font-bold text-white">KitchenDrop</h3>
+        </div>
+        <Badge tone="green" icon={CheckCircle2}>
+          Stable
+        </Badge>
+      </div>
+      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+        {health.map(([label, value]) => (
+          <div key={label} className="owner-health-card">
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </div>
+        ))}
+      </div>
+      <div className="mt-5 rounded-lg border border-amberSignal/25 bg-amberSignal/10 p-4">
+        <p className="text-xs font-bold uppercase text-amberSignal">Next maintenance task</p>
+        <p className="mt-2 text-sm leading-6 text-zinc-200">Run payment test before the next public launch.</p>
+      </div>
+    </div>
+  );
+}
+
 function WorkflowGrid({ items }) {
   return (
     <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -1335,9 +1875,9 @@ function Footer() {
           </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {['About', 'Browse Builders', 'Difference', 'Manifesto', 'For Founders', 'For Builders', 'Categories', 'Contact', 'Terms', 'Privacy'].map((link) => (
-            <Link key={link} to={link === 'Browse Builders' ? '/browse' : link === 'Difference' ? '/difference' : link === 'Manifesto' ? '/manifesto' : link === 'For Founders' ? '/founders' : link === 'For Builders' ? '/builders' : '/'} className="text-sm text-zinc-400 transition hover:text-cyanNeon">
-              {link}
+          {footerLinks.map(([label, to]) => (
+            <Link key={label} to={to} className="text-sm text-zinc-400 transition hover:text-cyanNeon">
+              {label}
             </Link>
           ))}
         </div>
