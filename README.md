@@ -30,3 +30,13 @@ python scripts/generate_brand_assets.py
 ```
 
 See `public/assets/brand-package.md` for the full asset list.
+
+## GitHub Pages root sync
+
+This repository currently serves GitHub Pages from the repository root. After changing app code, run:
+
+```bash
+pnpm pages:build
+```
+
+That builds from `app/` and syncs the compiled files into the root so Pages does not serve raw Vite source.

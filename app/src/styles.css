@@ -149,6 +149,22 @@
     @apply absolute z-10 rounded-lg border border-white/10 bg-void/[.72] p-4 shadow-glow backdrop-blur-xl;
   }
 
+  .signal-row {
+    @apply grid grid-cols-[72px_18px_1fr] items-center gap-2 rounded-md border border-white/10 bg-white/[.055] px-3 py-2 text-xs text-zinc-300;
+  }
+
+  .signal-row span {
+    @apply font-semibold text-white;
+  }
+
+  .signal-row strong {
+    @apply font-semibold text-amberSignal;
+  }
+
+  .mini-signal {
+    @apply rounded-md border border-cyanNeon/20 bg-cyanNeon/10 px-2.5 py-1.5 text-center text-xs font-bold text-cyanNeon;
+  }
+
   .signature-card,
   .category-card,
   .feature-card,

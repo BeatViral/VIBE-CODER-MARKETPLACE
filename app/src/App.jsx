@@ -99,6 +99,7 @@ function App() {
           <Route path="/founders" element={<FoundersPage />} />
           <Route path="/builders" element={<BuildersPage />} />
           <Route path="/manifesto" element={<ManifestoPage />} />
+          <Route path="*" element={<HomePage />} />
         </Routes>
       </main>
       <Footer />
@@ -330,10 +331,35 @@ function Hero() {
             </Badge>
             <p className="mt-3 text-sm text-white">Doctor building clinical workflow tools</p>
           </div>
-          <div className="floating-card bottom-20 left-0 max-w-[260px]">
+          <div className="floating-card top-8 left-4 hidden max-w-[300px] sm:block">
+            <p className="text-xs font-semibold uppercase text-amberSignal">Builder examples</p>
+            <div className="mt-4 grid gap-2">
+              {[
+                ['Doctor', 'clinic triage'],
+                ['Farmer', 'equipment logs'],
+                ['Producer', 'release workflows'],
+                ['Paralegal', 'qualified intake'],
+              ].map(([who, what]) => (
+                <div key={who} className="signal-row">
+                  <span>{who}</span>
+                  <ArrowRight className="size-3.5 text-cyanNeon" />
+                  <strong>{what}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="floating-card bottom-6 left-0 max-w-[330px]">
             <p className="text-xs font-semibold uppercase text-cyanNeon">Marketplace signal</p>
-            <p className="mt-3 font-display text-xl font-bold text-white">The stack is no longer the moat.</p>
-            <p className="mt-2 text-sm leading-6 text-zinc-300">The problem is.</p>
+            <p className="mt-3 font-display text-2xl font-bold leading-tight text-white">The stack tells you how. Experience tells you where the product breaks.</p>
+            <p className="mt-3 text-sm leading-6 text-zinc-300">
+              Vibe Coder Marketplace matches founders with people who know the workflow before the first feature list.
+            </p>
+            <div className="mt-4 grid grid-cols-2 gap-2">
+              <span className="mini-signal">pain first</span>
+              <span className="mini-signal">workflow fluent</span>
+              <span className="mini-signal">AI-built proof</span>
+              <span className="mini-signal">founder-safe</span>
+            </div>
           </div>
           <div className="floating-card bottom-0 right-8">
             <div className="flex items-center gap-2 text-amberSignal">
