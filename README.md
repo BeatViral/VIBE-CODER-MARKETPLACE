@@ -17,6 +17,8 @@ pnpm build
 
 The Vite base path is configured for GitHub Pages at `/VIBE-CODER-MARKETPLACE/`.
 
+The live GitHub Pages root serves the latest compiled static output. Source files live in `app/`.
+
 ## Brand assets
 
 The favicon/app icon/social banner package lives in `public/assets`.
