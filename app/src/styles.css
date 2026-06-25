@@ -114,6 +114,7 @@
   .stat-tile,
   .market-snapshot,
   .builder-card,
+  .definition-callout,
   .signature-card,
   .category-card,
   .track-card,
@@ -131,6 +132,14 @@
 
   .stat-tile {
     @apply p-4;
+  }
+
+  .definition-callout {
+    @apply mt-7 max-w-2xl p-5 shadow-glow;
+  }
+
+  .definition-callout-compact {
+    @apply mt-8 max-w-4xl;
   }
 
   .hero-visual {

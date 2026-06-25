@@ -328,8 +328,9 @@ function Hero() {
           </p>
           <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-400 sm:text-lg">
             Find doctors, farmers, producers, chefs, traders, operators, teachers, and real-life experts who use AI to
-            turn lived experience into working software.
+            build anything they imagine from the life they have actually lived.
           </p>
+          <DefinitionCallout />
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button to="/browse" icon={Search}>
               Find a Vibe Coder
@@ -447,6 +448,20 @@ function SignatureCards() {
         ))}
       </div>
     </section>
+  );
+}
+
+function DefinitionCallout({ compact = false }) {
+  return (
+    <div className={`definition-callout reveal ${compact ? 'definition-callout-compact' : ''}`}>
+      <p className="text-xs font-bold uppercase text-amberSignal">A vibe coder is</p>
+      <p className="mt-3 font-display text-2xl font-bold leading-tight text-white">
+        A person with lived experience who uses AI to build anything they imagine.
+      </p>
+      <p className="mt-3 text-sm font-semibold leading-6 text-cyanNeon">
+        Your industry is your advantage, not your prison.
+      </p>
+    </div>
   );
 }
 
@@ -939,8 +954,9 @@ function DifferencePage() {
         <PageHero
           badge="Contrarian thesis"
           title="Difference Between Coder and Vibe Coder"
-          text="A coder is syntax-first. A vibe coder is experience-first. One builds from the keyboard. The other builds from life."
+          text="A coder is syntax-first. A vibe coder is experience-first. A vibe coder uses lived experience and AI to build anything they imagine."
         />
+        <DefinitionCallout compact />
 
         <div className="reveal mt-12 grid gap-5 lg:grid-cols-2">
           <ManifestoPanel
@@ -1038,8 +1054,9 @@ function VibeCoderIfPage() {
         <PageHero
           badge="Identity page"
           title="You Are a Vibe Coder If..."
-          text="You build from intuition, lived experience, and the pressure of a problem you know firsthand."
+          text="You build from intuition, lived experience, and imagination. Your industry is your advantage, not your prison."
         />
+        <DefinitionCallout compact />
         <div className="mt-12 grid gap-4 md:grid-cols-2">
           {vibeCoderSignals.map(([title, text], index) => (
             <article key={title} className="number-card reveal">
@@ -1219,8 +1236,9 @@ function BuildersPage() {
         <PageHero
           badge="For builders"
           title="Your real-life experience is now a software-building superpower."
-          text="You do not need to be a traditional coder to become a builder. If you understand a real-world problem deeply and can use AI to create useful software, you belong here."
+          text="You do not need to be a traditional coder to become a builder. If you have lived experience and can use AI to build anything you imagine, you belong here."
         />
+        <DefinitionCallout compact />
         <WorkflowGrid
           items={[
             ['Create your builder card', 'Lead with your real-life identity and the software you can build with AI.'],
@@ -1257,6 +1275,8 @@ function ManifestoPage() {
   const lines = [
     ['Coders are syntax-first.', 'Vibe coders are experience-first.'],
     ['AI made syntax cheap.', 'Experience became the new moat.'],
+    ['A vibe coder has lived experience.', 'They use AI to build anything they imagine.'],
+    ['Your industry is your advantage.', 'Not your prison.'],
     ['A coder knows how to build.', 'A vibe coder knows why it needs to be built.'],
     ['A coder builds apps.', 'A vibe coder builds solutions.'],
     ['A coder builds from code.', 'A vibe coder builds from life.'],
