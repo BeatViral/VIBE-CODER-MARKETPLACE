@@ -280,11 +280,19 @@
   }
 
   .vibeguide-interface {
-    @apply grid gap-4 p-4 shadow-cyan;
+    @apply grid gap-4 overflow-hidden p-4 shadow-cyan xl:grid-cols-[1.15fr_.85fr];
+  }
+
+  .guide-cockpit-main {
+    @apply grid gap-3;
+  }
+
+  .guide-cockpit-side {
+    @apply grid gap-3;
   }
 
   .guide-window {
-    @apply rounded-lg border border-white/10 bg-void/65 p-4;
+    @apply rounded-lg border border-white/10 bg-void/65 p-4 shadow-glow;
   }
 
   .guide-window-help {
@@ -308,11 +316,43 @@
   }
 
   .guide-mini-grid {
-    @apply grid gap-2 sm:grid-cols-2;
+    @apply grid gap-2 sm:grid-cols-2 xl:grid-cols-1;
   }
 
   .guide-mini-grid span {
-    @apply rounded-md border border-amberSignal/25 bg-amberSignal/10 px-3 py-2 text-center text-xs font-bold text-amberSignal;
+    @apply rounded-md border border-amberSignal/25 bg-amberSignal/10 px-3 py-2 text-left;
+  }
+
+  .guide-mini-grid strong {
+    @apply block text-xs font-bold uppercase text-amberSignal;
+  }
+
+  .guide-mini-grid em {
+    @apply mt-1 block text-xs font-semibold not-italic text-zinc-200;
+  }
+
+  .guide-memory-panel {
+    @apply rounded-lg border border-cyanNeon/25 bg-cyanNeon/10 p-4 shadow-cyan;
+  }
+
+  .guide-memory-panel > span {
+    @apply block border-b border-white/10 pb-3 text-xs font-bold uppercase text-cyanNeon;
+  }
+
+  .guide-memory-panel div {
+    @apply mt-3 grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 rounded-md border border-white/10 bg-void/65 p-3;
+  }
+
+  .guide-memory-panel strong {
+    @apply min-w-0 text-sm font-bold text-white;
+  }
+
+  .guide-memory-panel em {
+    @apply text-right text-xs font-bold not-italic text-amberSignal;
+  }
+
+  .guide-memory-panel p {
+    @apply col-span-2 text-xs font-semibold text-zinc-400;
   }
 
   .conversation-panel {
@@ -516,6 +556,58 @@
     @apply mt-4 text-sm leading-7 text-zinc-400;
   }
 
+  .product-gallery {
+    @apply grid gap-4 md:grid-cols-2 xl:grid-cols-4;
+  }
+
+  .product-panel {
+    @apply overflow-hidden rounded-lg border border-white/10 bg-white/[.045] shadow-glow backdrop-blur-xl transition duration-300 hover:-translate-y-1;
+  }
+
+  .product-panel-cyan {
+    @apply hover:border-cyanNeon/45 hover:bg-cyanNeon/10;
+  }
+
+  .product-panel-violet {
+    @apply hover:border-ultraviolet/45 hover:bg-violetRoyal/10;
+  }
+
+  .product-panel-amber {
+    @apply hover:border-amberSignal/45 hover:bg-amberSignal/10;
+  }
+
+  .product-panel-green {
+    @apply hover:border-acid/45 hover:bg-acid/10;
+  }
+
+  .product-panel-coral {
+    @apply hover:border-coral/45 hover:bg-coral/10;
+  }
+
+  .product-panel-head {
+    @apply border-b border-white/10 bg-void/55 p-4;
+  }
+
+  .product-panel-head span {
+    @apply block text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .product-panel-head strong {
+    @apply mt-2 block font-display text-xl font-bold text-white;
+  }
+
+  .product-panel-screen {
+    @apply grid gap-3 p-4;
+  }
+
+  .product-panel-screen div {
+    @apply flex items-start gap-3 rounded-md border border-white/10 bg-void/55 p-3;
+  }
+
+  .product-panel-screen p {
+    @apply text-sm font-semibold leading-6 text-zinc-300;
+  }
+
   .manual-lines {
     @apply mt-6 grid gap-3;
   }
@@ -562,6 +654,58 @@
 
   .hero-visual-shade {
     @apply absolute inset-0 bg-gradient-to-r from-void/50 via-transparent to-void/10;
+  }
+
+  .hero-marketplace-preview {
+    @apply absolute right-4 top-28 z-10 w-[min(430px,calc(100%-2rem))] rounded-lg border border-cyanNeon/25 bg-void/[.82] p-4 shadow-cyan backdrop-blur-xl;
+  }
+
+  .hero-preview-topbar {
+    @apply flex items-center justify-between gap-3 border-b border-white/10 pb-3 text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .hero-preview-topbar strong {
+    @apply text-cyanNeon;
+  }
+
+  .hero-preview-filters {
+    @apply mt-3 flex flex-wrap gap-2;
+  }
+
+  .hero-preview-filters span {
+    @apply rounded-md border border-white/10 bg-white/[.06] px-2.5 py-1.5 text-xs font-bold text-zinc-300;
+  }
+
+  .hero-preview-grid {
+    @apply mt-4 grid gap-3;
+  }
+
+  .hero-builder-mini {
+    @apply rounded-lg border border-white/10 bg-white/[.055] p-3;
+  }
+
+  .hero-builder-mini .avatar {
+    @apply size-10;
+  }
+
+  .hero-builder-mini .avatar span {
+    @apply text-xs;
+  }
+
+  .hero-builder-mini strong {
+    @apply block truncate font-display text-sm font-bold text-white;
+  }
+
+  .hero-builder-mini span {
+    @apply block truncate text-xs font-semibold text-zinc-400;
+  }
+
+  .hero-builder-mini p {
+    @apply mt-3 text-xs font-semibold leading-5 text-zinc-300;
+  }
+
+  .hero-builder-mini em {
+    @apply rounded-md border border-amberSignal/25 bg-amberSignal/10 px-2 py-1 text-[11px] font-bold not-italic text-amberSignal;
   }
 
   .floating-card {
@@ -613,6 +757,34 @@
     @apply p-5 transition duration-300;
   }
 
+  .status-pill {
+    @apply inline-flex min-h-6 items-center rounded-md border px-2 py-1 text-[11px] font-bold uppercase;
+  }
+
+  .status-pill-cyan {
+    @apply border-cyanNeon/30 bg-cyanNeon/10 text-cyanNeon;
+  }
+
+  .status-pill-coral {
+    @apply border-coral/35 bg-coral/10 text-coral;
+  }
+
+  .status-pill-amber {
+    @apply border-amberSignal/35 bg-amberSignal/10 text-amberSignal;
+  }
+
+  .builder-advantage {
+    @apply mt-5 rounded-lg border border-cyanNeon/20 bg-cyanNeon/10 p-4 shadow-cyan;
+  }
+
+  .builder-advantage p {
+    @apply text-xs font-bold uppercase text-cyanNeon;
+  }
+
+  .builder-advantage strong {
+    @apply mt-2 block text-sm font-semibold leading-7 text-white;
+  }
+
   .avatar {
     @apply grid size-14 shrink-0 place-items-center rounded-lg border border-cyanNeon/25 bg-gradient-to-br from-violetRoyal/70 via-indigoDeep to-cyanNeon/30 shadow-cyan;
   }
@@ -647,6 +819,14 @@
 
   .filter-chip-active {
     @apply border-cyanNeon/60 bg-cyanNeon/[.12] text-cyanNeon shadow-cyan;
+  }
+
+  .market-quick-chip {
+    @apply rounded-md border border-white/10 bg-white/[.045] px-3 py-2 text-sm font-bold text-zinc-400 transition hover:border-amberSignal/45 hover:text-white;
+  }
+
+  .market-quick-chip-active {
+    @apply border-amberSignal/55 bg-amberSignal/10 text-amberSignal shadow-coral;
   }
 
   .field {
@@ -707,6 +887,24 @@
 
   .manifesto-line {
     @apply rounded-lg border border-white/10 bg-white/[.045] p-6 text-center font-display text-3xl font-bold leading-tight backdrop-blur-xl sm:text-5xl;
+  }
+
+  .footer-action {
+    @apply inline-flex min-h-10 items-center justify-center rounded-md border border-white/10 bg-white/[.045] px-4 py-2 text-sm font-bold text-white transition hover:border-cyanNeon/45 hover:bg-cyanNeon/10 hover:text-cyanNeon;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-marketplace-preview {
+    @apply left-3 right-3 top-20 w-auto;
+  }
+
+  .floating-card {
+    @apply max-w-[calc(100%-1rem)];
+  }
+
+  .memory-table {
+    @apply min-w-[560px];
   }
 }
 
