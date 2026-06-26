@@ -4,6 +4,7 @@ import { LogoCompact } from './Navbar.jsx';
 const footerLinks = [
   ['Browse Builders', '/browse'],
   ['VibeStudio', '/vibestudio'],
+  ['VibeStudio App', '/vibestudio-app'],
   ['Difference', '/difference'],
   ['Manifesto', '/manifesto'],
   ['For Founders', '/founders'],

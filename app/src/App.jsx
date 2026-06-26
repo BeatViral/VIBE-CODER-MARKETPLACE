@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage.jsx';
 import BrowsePage from './pages/BrowsePage.jsx';
 import DifferencePage from './pages/DifferencePage.jsx';
 import VibeStudioPage from './pages/VibeStudioPage.jsx';
+import VibeStudioAppPage from './pages/VibeStudioAppPage.jsx';
 import VibeCoderIfPage from './pages/VibeCoderIfPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import FoundersPage from './pages/FoundersPage.jsx';
@@ -105,18 +106,20 @@ function SiteBackground() {
 export default function App() {
   const location = useLocation();
   useScrollReveal(`${location.pathname}${location.search}${location.hash}`);
+  const isWorkspaceRoute = location.pathname === '/vibestudio-app';
 
   return (
     <div className="min-h-screen overflow-hidden bg-void text-slate-100">
       <ScrollToTop />
       <SiteBackground />
-      <Navbar />
+      {!isWorkspaceRoute && <Navbar />}
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/browse" element={<BrowsePage />} />
           <Route path="/difference" element={<DifferencePage />} />
           <Route path="/vibestudio" element={<VibeStudioPage />} />
+          <Route path="/vibestudio-app" element={<VibeStudioAppPage />} />
           <Route path="/vibe-coder-if" element={<VibeCoderIfPage />} />
           <Route path="/profile/:id" element={<ProfilePage />} />
           <Route path="/founders" element={<FoundersPage />} />
@@ -125,7 +128,7 @@ export default function App() {
           <Route path="*" element={<HomePage />} />
         </Routes>
       </main>
-      <Footer />
+      {!isWorkspaceRoute && <Footer />}
     </div>
   );
 }

@@ -25,7 +25,8 @@
 
   button,
   input,
-  select {
+  select,
+  textarea {
     font: inherit;
   }
 }
@@ -892,6 +893,459 @@
   .footer-action {
     @apply inline-flex min-h-10 items-center justify-center rounded-md border border-white/10 bg-white/[.045] px-4 py-2 text-sm font-bold text-white transition hover:border-cyanNeon/45 hover:bg-cyanNeon/10 hover:text-cyanNeon;
   }
+
+  .vs-workspace {
+    @apply relative z-10 min-h-screen bg-[radial-gradient(circle_at_20%_0%,rgba(0,229,255,.12),transparent_26%),radial-gradient(circle_at_88%_12%,rgba(255,77,109,.12),transparent_25%),linear-gradient(135deg,#05050A,#0A0A0F_48%,#171339)] text-white;
+  }
+
+  .vs-topbar {
+    @apply sticky top-0 z-40 grid min-h-20 gap-4 border-b border-white/10 bg-void/[.82] px-4 py-3 backdrop-blur-xl lg:grid-cols-[300px_1fr_auto] lg:items-center lg:px-5;
+  }
+
+  .vs-topbar-brand {
+    @apply flex min-w-0 items-center gap-3;
+  }
+
+  .vs-logo-mark {
+    @apply grid size-11 shrink-0 place-items-center rounded-lg border border-amberSignal/45 bg-void text-amberSignal shadow-coral;
+  }
+
+  .vs-topbar-brand strong,
+  .vs-project-pill strong {
+    @apply block truncate font-display text-base font-bold text-white;
+  }
+
+  .vs-topbar-brand span span,
+  .vs-project-pill span {
+    @apply block truncate text-xs font-semibold text-zinc-500;
+  }
+
+  .vs-project-pill {
+    @apply min-w-0 rounded-lg border border-white/10 bg-white/[.045] px-4 py-3;
+  }
+
+  .vs-topbar-actions {
+    @apply flex flex-wrap items-center gap-2;
+  }
+
+  .vs-save-status {
+    @apply rounded-md border border-cyanNeon/20 bg-cyanNeon/10 px-3 py-2 text-xs font-bold text-cyanNeon;
+  }
+
+  .vs-mini-button {
+    @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-white/10 bg-white/[.055] px-3 py-2 text-sm font-bold text-zinc-200 transition hover:border-cyanNeon/45 hover:bg-cyanNeon/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .vs-mini-button-hot {
+    @apply border-amberSignal/35 bg-amberSignal/10 text-amberSignal shadow-coral;
+  }
+
+  .vs-primary-action {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-white/10 bg-gradient-to-r from-violetRoyal to-coral px-5 py-3 text-sm font-bold text-white shadow-coral transition hover:-translate-y-0.5 hover:shadow-glow;
+  }
+
+  .vs-workspace-grid {
+    @apply grid min-h-[calc(100vh-5rem)] gap-4 p-4 xl:grid-cols-[260px_minmax(0,1fr)_320px];
+  }
+
+  .vs-sidebar,
+  .vs-helper,
+  .vs-main-panel {
+    @apply rounded-lg border border-white/10 bg-white/[.045] shadow-glow backdrop-blur-xl;
+  }
+
+  .vs-sidebar,
+  .vs-helper {
+    @apply h-fit p-4 xl:sticky xl:top-24;
+  }
+
+  .vs-main-panel {
+    @apply min-w-0 p-4 sm:p-5 lg:p-6;
+  }
+
+  .vs-sidebar-label {
+    @apply mb-4 flex items-center gap-2 text-xs font-bold uppercase text-cyanNeon;
+  }
+
+  .vs-sidebar-nav {
+    @apply grid gap-2;
+  }
+
+  .vs-sidebar-link {
+    @apply flex min-h-12 items-center gap-3 rounded-md border border-white/10 bg-void/55 px-3 py-2 text-left text-sm font-bold text-zinc-300 transition hover:border-cyanNeon/35 hover:bg-cyanNeon/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-45;
+  }
+
+  .vs-sidebar-link svg {
+    @apply shrink-0 text-cyanNeon;
+  }
+
+  .vs-sidebar-link span {
+    @apply min-w-0 flex-1;
+  }
+
+  .vs-sidebar-link em {
+    @apply rounded bg-white/[.06] px-2 py-1 text-[10px] font-bold not-italic text-zinc-500;
+  }
+
+  .vs-sidebar-link-active {
+    @apply border-cyanNeon/50 bg-cyanNeon/10 text-cyanNeon shadow-cyan;
+  }
+
+  .vs-sidebar-note {
+    @apply mt-5 rounded-lg border border-amberSignal/25 bg-amberSignal/10 p-4;
+  }
+
+  .vs-sidebar-note strong {
+    @apply block font-display text-lg font-bold text-white;
+  }
+
+  .vs-sidebar-note span {
+    @apply mt-2 block text-xs font-semibold leading-5 text-zinc-300;
+  }
+
+  .vs-panel-stack {
+    @apply grid gap-5;
+  }
+
+  .vs-section-head {
+    @apply rounded-lg border border-cyanNeon/20 bg-[linear-gradient(135deg,rgba(0,229,255,.1),rgba(124,58,237,.12),rgba(255,77,109,.06))] p-5 shadow-cyan;
+  }
+
+  .vs-section-head-compact {
+    @apply p-4;
+  }
+
+  .vs-kicker {
+    @apply text-xs font-bold uppercase tracking-normal text-cyanNeon;
+  }
+
+  .vs-section-head h1,
+  .vs-start-hero h1 {
+    @apply mt-3 font-display text-4xl font-bold leading-tight text-white sm:text-6xl;
+  }
+
+  .vs-section-head h2 {
+    @apply mt-2 font-display text-2xl font-bold text-white;
+  }
+
+  .vs-section-head p,
+  .vs-start-hero p {
+    @apply mt-4 max-w-4xl text-sm leading-7 text-zinc-300 sm:text-base;
+  }
+
+  .vs-start-hero {
+    @apply rounded-lg border border-cyanNeon/25 bg-[radial-gradient(circle_at_20%_0%,rgba(0,229,255,.22),transparent_32%),linear-gradient(135deg,rgba(124,58,237,.24),rgba(5,5,10,.88))] p-6 shadow-cyan sm:p-8;
+  }
+
+  .vs-start-actions,
+  .vs-inline-actions {
+    @apply mt-5 flex flex-wrap gap-3;
+  }
+
+  .vs-start-grid {
+    @apply grid gap-4 md:grid-cols-2 xl:grid-cols-5;
+  }
+
+  .vs-start-card {
+    @apply rounded-lg border border-white/10 bg-white/[.045] p-5 transition hover:-translate-y-1 hover:border-cyanNeon/35 hover:bg-cyanNeon/10 hover:shadow-cyan;
+  }
+
+  .vs-start-card svg {
+    @apply text-amberSignal;
+  }
+
+  .vs-start-card h2 {
+    @apply mt-5 font-display text-xl font-bold text-white;
+  }
+
+  .vs-start-card p {
+    @apply mt-3 text-sm leading-6 text-zinc-400;
+  }
+
+  .vs-saved-panel,
+  .vs-form-block,
+  .vs-action-band,
+  .vs-empty-state {
+    @apply rounded-lg border border-white/10 bg-white/[.045] p-5;
+  }
+
+  .vs-saved-list {
+    @apply mt-4 grid gap-3;
+  }
+
+  .vs-saved-item {
+    @apply flex flex-col gap-3 rounded-lg border border-white/10 bg-void/55 p-4 sm:flex-row sm:items-center sm:justify-between;
+  }
+
+  .vs-saved-item strong {
+    @apply block font-display text-base font-bold text-white;
+  }
+
+  .vs-saved-item span {
+    @apply mt-1 block text-xs text-zinc-500;
+  }
+
+  .vs-saved-item div:last-child {
+    @apply flex gap-2;
+  }
+
+  .vs-saved-item button {
+    @apply grid size-9 place-items-center rounded-md border border-white/10 bg-white/[.045] text-zinc-300 transition hover:border-cyanNeon/45 hover:text-cyanNeon;
+  }
+
+  .vs-empty-mini {
+    @apply rounded-md border border-white/10 bg-void/55 p-4 text-sm text-zinc-400;
+  }
+
+  .vs-form-grid {
+    @apply grid gap-4 lg:grid-cols-2;
+  }
+
+  .vs-form-grid-wide {
+    @apply xl:grid-cols-2;
+  }
+
+  .vs-form-field {
+    @apply grid gap-2 rounded-lg border border-white/10 bg-white/[.035] p-4;
+  }
+
+  .vs-form-field span,
+  .vs-form-block > span {
+    @apply text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .vs-form-field input,
+  .vs-form-field textarea,
+  .vs-search input {
+    @apply w-full rounded-md border border-white/10 bg-void/70 px-3 py-3 text-sm text-white outline-none transition placeholder:text-zinc-600 focus:border-cyanNeon/60 focus:ring-2 focus:ring-cyanNeon/20;
+  }
+
+  .vs-form-field textarea {
+    @apply min-h-28 resize-y leading-7;
+  }
+
+  .vs-form-field em {
+    @apply text-xs font-semibold not-italic leading-5 text-cyanNeon;
+  }
+
+  .vs-chip-grid {
+    @apply mt-3 flex flex-wrap gap-2;
+  }
+
+  .vs-select-chip {
+    @apply rounded-md border border-white/10 bg-void/60 px-3 py-2 text-sm font-bold text-zinc-400 transition hover:border-cyanNeon/40 hover:text-white;
+  }
+
+  .vs-select-chip-active {
+    @apply border-cyanNeon/55 bg-cyanNeon/10 text-cyanNeon shadow-cyan;
+  }
+
+  .vs-action-band {
+    @apply flex flex-col justify-between gap-4 border-amberSignal/25 bg-amberSignal/10 sm:flex-row sm:items-center;
+  }
+
+  .vs-action-band strong {
+    @apply block font-display text-2xl font-bold text-white;
+  }
+
+  .vs-action-band span {
+    @apply mt-2 block text-sm leading-6 text-zinc-300;
+  }
+
+  .vs-success-note {
+    @apply rounded-lg border border-acid/25 bg-acid/10 p-4 text-sm font-bold leading-6 text-acid;
+  }
+
+  .vs-output-grid {
+    @apply grid gap-4 md:grid-cols-2;
+  }
+
+  .vs-output-card {
+    @apply rounded-lg border border-white/10 bg-white/[.045] p-5;
+  }
+
+  .vs-output-card span {
+    @apply text-xs font-bold uppercase text-cyanNeon;
+  }
+
+  .vs-output-card p {
+    @apply mt-3 text-sm font-semibold leading-7 text-zinc-200;
+  }
+
+  .vs-files-grid {
+    @apply grid gap-4 xl:grid-cols-[320px_minmax(0,1fr)];
+  }
+
+  .vs-file-tree,
+  .vs-file-viewer,
+  .vs-export-preview {
+    @apply overflow-hidden rounded-lg border border-white/10 bg-void/70;
+  }
+
+  .vs-file-tree {
+    @apply max-h-[680px] overflow-auto p-2;
+  }
+
+  .vs-file-node {
+    @apply flex min-h-10 w-full items-center justify-between gap-3 rounded-md px-3 py-2 text-left text-sm font-semibold text-zinc-400 transition hover:bg-cyanNeon/10 hover:text-white;
+  }
+
+  .vs-file-node em {
+    @apply text-[10px] font-bold uppercase not-italic text-zinc-600;
+  }
+
+  .vs-file-node-active {
+    @apply bg-cyanNeon/10 text-cyanNeon;
+  }
+
+  .vs-file-viewer-head {
+    @apply flex flex-col gap-3 border-b border-white/10 p-4 sm:flex-row sm:items-center sm:justify-between;
+  }
+
+  .vs-file-viewer-head span {
+    @apply text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .vs-file-viewer-head strong {
+    @apply mt-1 block break-all font-display text-sm font-bold text-white;
+  }
+
+  .vs-file-viewer pre,
+  .vs-export-preview pre {
+    @apply max-h-[620px] overflow-auto whitespace-pre-wrap p-4 text-xs leading-6 text-zinc-300;
+  }
+
+  .vs-preview-frame {
+    @apply mx-auto w-full rounded-lg border border-white/10 bg-void/70 p-4 shadow-glow;
+  }
+
+  .vs-preview-frame-mobile {
+    @apply max-w-[390px];
+  }
+
+  .vs-preview-app {
+    @apply overflow-hidden rounded-lg border border-cyanNeon/20 bg-[linear-gradient(135deg,rgba(0,229,255,.08),rgba(124,58,237,.12),rgba(255,77,109,.06))];
+  }
+
+  .vs-preview-app nav {
+    @apply flex flex-col gap-3 border-b border-white/10 p-4 sm:flex-row sm:items-center sm:justify-between;
+  }
+
+  .vs-preview-app nav strong {
+    @apply font-display text-lg font-bold text-white;
+  }
+
+  .vs-preview-app nav div {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .vs-preview-app nav span {
+    @apply rounded-md border border-white/10 bg-white/[.055] px-2.5 py-1.5 text-xs font-bold text-zinc-300;
+  }
+
+  .vs-preview-hero {
+    @apply p-6 sm:p-8;
+  }
+
+  .vs-preview-hero p {
+    @apply text-xs font-bold uppercase text-amberSignal;
+  }
+
+  .vs-preview-hero h2 {
+    @apply mt-3 font-display text-4xl font-bold text-white sm:text-6xl;
+  }
+
+  .vs-preview-hero span {
+    @apply mt-4 block max-w-3xl text-sm leading-7 text-zinc-300;
+  }
+
+  .vs-preview-grid {
+    @apply grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .vs-preview-grid article,
+  .vs-preview-owner {
+    @apply rounded-lg border border-white/10 bg-void/60 p-4;
+  }
+
+  .vs-preview-grid span {
+    @apply text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .vs-preview-grid strong,
+  .vs-preview-owner strong {
+    @apply mt-2 block font-display text-base font-bold text-white;
+  }
+
+  .vs-preview-owner {
+    @apply m-4 border-amberSignal/25 bg-amberSignal/10;
+  }
+
+  .vs-preview-owner p {
+    @apply mt-2 text-sm leading-6 text-zinc-300;
+  }
+
+  .vs-helper {
+    @apply grid gap-4;
+  }
+
+  .vs-helper h2 {
+    @apply mt-2 font-display text-2xl font-bold text-white;
+  }
+
+  .vs-helper p {
+    @apply mt-2 text-sm leading-6 text-zinc-400;
+  }
+
+  .vs-search {
+    @apply flex items-center gap-2 rounded-lg border border-white/10 bg-void/60 p-2;
+  }
+
+  .vs-search svg {
+    @apply shrink-0 text-cyanNeon;
+  }
+
+  .vs-plain-card,
+  .vs-plain-example {
+    @apply rounded-lg border border-cyanNeon/20 bg-cyanNeon/10 p-4 shadow-cyan;
+  }
+
+  .vs-plain-card span,
+  .vs-plain-example span {
+    @apply text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .vs-plain-card strong {
+    @apply mt-2 block font-display text-2xl font-bold text-cyanNeon;
+  }
+
+  .vs-dictionary-list {
+    @apply grid gap-2;
+  }
+
+  .vs-dictionary-list button {
+    @apply rounded-md border border-white/10 bg-white/[.035] p-3 text-left transition hover:border-cyanNeon/35 hover:bg-cyanNeon/10;
+  }
+
+  .vs-dictionary-list span {
+    @apply block text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .vs-dictionary-list strong {
+    @apply mt-1 block text-sm font-bold text-white;
+  }
+
+  .vs-empty-state {
+    @apply text-center;
+  }
+
+  .vs-empty-state h2 {
+    @apply font-display text-3xl font-bold text-white;
+  }
+
+  .vs-empty-state p {
+    @apply mx-auto mt-3 max-w-xl text-sm leading-7 text-zinc-400;
+  }
 }
 
 @media (max-width: 767px) {
@@ -905,6 +1359,26 @@
 
   .memory-table {
     @apply min-w-[560px];
+  }
+
+  .vs-workspace-grid {
+    @apply p-3;
+  }
+
+  .vs-topbar-actions,
+  .vs-start-actions,
+  .vs-inline-actions {
+    @apply grid w-full grid-cols-1;
+  }
+
+  .vs-mini-button,
+  .vs-primary-action {
+    @apply w-full;
+  }
+
+  .vs-section-head h1,
+  .vs-start-hero h1 {
+    @apply text-4xl;
   }
 }
 

@@ -9,6 +9,7 @@ const navLinks = [
   ['Home', '/'],
   ['Browse Builders', '/browse'],
   ['VibeStudio', '/vibestudio'],
+  ['VibeStudio App', '/vibestudio-app'],
   ['Difference', '/difference'],
   ['Are You a Vibe Coder?', '/vibe-coder-if'],
   ['Manifesto', '/manifesto'],
