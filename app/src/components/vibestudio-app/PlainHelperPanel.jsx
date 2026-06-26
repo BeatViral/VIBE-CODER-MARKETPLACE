@@ -4,13 +4,13 @@ import { plainDictionary, translateToPlain } from '../../utils/plainDictionary.j
 
 const tabTerms = {
   start: 'Repository',
-  life: 'Database',
-  workflow: 'Routes',
-  first: 'Build artifact',
-  files: 'Repository',
+  plan: 'Routes',
   preview: 'Deployment',
+  pages: 'Routes',
+  files: 'Repository',
   owner: 'Technical documentation',
   export: 'Build artifact',
+  help: 'Database',
 };
 
 export default function PlainHelperPanel({ activeTab, formData }) {

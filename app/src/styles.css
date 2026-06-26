@@ -1033,6 +1033,62 @@
     @apply mt-4 max-w-4xl text-sm leading-7 text-zinc-300 sm:text-base;
   }
 
+  .vs-prompt-card {
+    @apply rounded-lg border border-cyanNeon/25 bg-[radial-gradient(circle_at_20%_0%,rgba(0,229,255,.18),transparent_30%),linear-gradient(135deg,rgba(124,58,237,.18),rgba(5,5,10,.9))] p-5 shadow-cyan sm:p-7;
+  }
+
+  .vs-prompt-card h1 {
+    @apply mt-3 font-display text-4xl font-bold leading-tight text-white sm:text-6xl;
+  }
+
+  .vs-prompt-card p {
+    @apply mt-4 max-w-3xl text-sm leading-7 text-zinc-300 sm:text-base;
+  }
+
+  .vs-prompt-box {
+    @apply mt-6 min-h-48 w-full resize-y rounded-lg border border-white/10 bg-void/75 p-4 text-base font-semibold leading-8 text-white outline-none shadow-glow transition placeholder:text-zinc-500 focus:border-cyanNeon/60 focus:ring-2 focus:ring-cyanNeon/20;
+  }
+
+  .vs-quick-row {
+    @apply mt-5 flex flex-col justify-between gap-4 lg:flex-row lg:items-center;
+  }
+
+  .vs-quick-row > span {
+    @apply text-sm font-bold text-amberSignal;
+  }
+
+  .vs-quick-row > div {
+    @apply flex flex-wrap gap-3;
+  }
+
+  .vs-simple-options {
+    @apply grid gap-4 rounded-lg border border-white/10 bg-white/[.035] p-4 lg:grid-cols-2;
+  }
+
+  .vs-simple-options span {
+    @apply text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .vs-followup-grid {
+    @apply grid gap-4 lg:grid-cols-3;
+  }
+
+  .vs-advanced-shell {
+    @apply rounded-lg border border-white/10 bg-white/[.035] p-4;
+  }
+
+  .vs-advanced-toggle {
+    @apply inline-flex min-h-10 items-center gap-2 rounded-md border border-white/10 bg-void/60 px-3 py-2 text-sm font-bold text-zinc-300 transition hover:border-cyanNeon/35 hover:bg-cyanNeon/10 hover:text-white;
+  }
+
+  .vs-advanced-toggle svg {
+    @apply transition;
+  }
+
+  .vs-advanced-grid {
+    @apply mt-4 grid gap-4 lg:grid-cols-2;
+  }
+
   .vs-start-hero {
     @apply rounded-lg border border-cyanNeon/25 bg-[radial-gradient(circle_at_20%_0%,rgba(0,229,255,.22),transparent_32%),linear-gradient(135deg,rgba(124,58,237,.24),rgba(5,5,10,.88))] p-6 shadow-cyan sm:p-8;
   }
@@ -1172,6 +1228,62 @@
     @apply mt-3 text-sm font-semibold leading-7 text-zinc-200;
   }
 
+  .vs-plan-grid,
+  .vs-pages-grid,
+  .vs-export-options {
+    @apply grid gap-4 md:grid-cols-2 xl:grid-cols-4;
+  }
+
+  .vs-plan-card,
+  .vs-page-card,
+  .vs-export-option,
+  .vs-help-card {
+    @apply rounded-lg border border-white/10 bg-white/[.045] p-5;
+  }
+
+  .vs-plan-card span,
+  .vs-page-card > span,
+  .vs-export-option span,
+  .vs-help-answer span {
+    @apply text-xs font-bold uppercase text-cyanNeon;
+  }
+
+  .vs-plan-card p {
+    @apply mt-3 text-sm font-semibold leading-7 text-zinc-200;
+  }
+
+  .vs-page-card h2 {
+    @apply mt-3 font-display text-2xl font-bold text-white;
+  }
+
+  .vs-page-card p {
+    @apply mt-3 text-sm leading-7 text-zinc-300;
+  }
+
+  .vs-page-card div {
+    @apply mt-4 rounded-md border border-white/10 bg-void/55 p-3;
+  }
+
+  .vs-page-card strong {
+    @apply block text-xs font-bold uppercase text-zinc-500;
+  }
+
+  .vs-page-card em {
+    @apply mt-1 block text-sm font-semibold not-italic leading-6 text-zinc-200;
+  }
+
+  .vs-page-card .vs-mini-button {
+    @apply mt-5;
+  }
+
+  .vs-export-option strong {
+    @apply block font-display text-lg font-bold text-white;
+  }
+
+  .vs-export-option span {
+    @apply mt-2 block text-amberSignal;
+  }
+
   .vs-files-grid {
     @apply grid gap-4 xl:grid-cols-[320px_minmax(0,1fr)];
   }
@@ -1285,6 +1397,30 @@
     @apply mt-2 text-sm leading-6 text-zinc-300;
   }
 
+  .vs-help-grid {
+    @apply grid gap-4 lg:grid-cols-[.9fr_1.1fr];
+  }
+
+  .vs-help-card h2 {
+    @apply mt-4 font-display text-2xl font-bold text-white;
+  }
+
+  .vs-help-card textarea {
+    @apply mt-4 min-h-36 w-full resize-y rounded-md border border-white/10 bg-void/70 p-3 text-sm leading-7 text-white outline-none placeholder:text-zinc-600 focus:border-cyanNeon/60 focus:ring-2 focus:ring-cyanNeon/20;
+  }
+
+  .vs-help-card .vs-primary-action {
+    @apply mt-4;
+  }
+
+  .vs-help-answer {
+    @apply border-cyanNeon/20 bg-cyanNeon/10 shadow-cyan;
+  }
+
+  .vs-help-answer p {
+    @apply mt-4 text-base font-semibold leading-8 text-white;
+  }
+
   .vs-helper {
     @apply grid gap-4;
   }
@@ -1376,8 +1512,13 @@
     @apply w-full;
   }
 
+  .vs-quick-row > div {
+    @apply grid w-full grid-cols-1;
+  }
+
   .vs-section-head h1,
-  .vs-start-hero h1 {
+  .vs-start-hero h1,
+  .vs-prompt-card h1 {
     @apply text-4xl;
   }
 }

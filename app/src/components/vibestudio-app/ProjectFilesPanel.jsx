@@ -13,12 +13,11 @@ export default function ProjectFilesPanel({ generated, selectedFile, onSelectFil
   return (
     <div className="vs-panel-stack">
       <div className="vs-section-head">
-        <p className="vs-kicker">Project Files</p>
-        <h1>App Folder</h1>
+        <p className="vs-kicker">Files</p>
+        <h1>App files behind your project.</h1>
         <p>
-          These are the app files VibeStudio created for your project. You do not need to edit them directly.
-          VibeStudio shows them so you can see what your app is made of, save a backup, or hand the project to someone
-          else.
+          These are the app files behind your project. You do not need to edit them directly. VibeStudio shows them so
+          you can see what your app is made of, save a backup, or hand the project to someone else.
         </p>
         <div className="vs-inline-actions">
           <CopyButton text={fileTree.join('\n')} label="Copy file tree" />

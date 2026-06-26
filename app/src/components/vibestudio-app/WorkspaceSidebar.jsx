@@ -1,25 +1,25 @@
-import { BookOpen, Box, ClipboardList, Eye, FileText, FolderTree, Home, Map, Package, Sparkles } from 'lucide-react';
+import { BookOpen, Box, Eye, FileText, FolderTree, HelpCircle, Home, ListChecks, Package, PanelsTopLeft } from 'lucide-react';
 
 const icons = {
   start: Home,
-  life: Sparkles,
-  workflow: Map,
-  first: ClipboardList,
-  files: FolderTree,
+  plan: ListChecks,
   preview: Eye,
+  pages: PanelsTopLeft,
+  files: FolderTree,
   owner: BookOpen,
   export: Package,
+  help: HelpCircle,
 };
 
 export const workspaceTabs = [
   ['start', 'Start'],
-  ['life', 'Life Map'],
-  ['workflow', 'Workflow Map'],
-  ['first', 'First Useful Version'],
-  ['files', 'Project Files'],
+  ['plan', 'Plan'],
   ['preview', 'Preview'],
-  ['owner', 'Owner Manual'],
-  ['export', 'Export Package'],
+  ['pages', 'Pages'],
+  ['files', 'Files'],
+  ['owner', 'Owner Notes'],
+  ['export', 'Export'],
+  ['help', 'Help'],
 ];
 
 export default function WorkspaceSidebar({ activeTab, onTabChange, generated }) {
@@ -32,7 +32,7 @@ export default function WorkspaceSidebar({ activeTab, onTabChange, generated }) 
       <nav className="vs-sidebar-nav">
         {workspaceTabs.map(([id, label]) => {
           const Icon = icons[id] || FileText;
-          const locked = !generated && !['start', 'life'].includes(id);
+          const locked = !generated && !['start', 'help'].includes(id);
 
           return (
             <button

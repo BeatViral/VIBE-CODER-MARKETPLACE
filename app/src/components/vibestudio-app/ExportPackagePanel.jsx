@@ -38,6 +38,22 @@ export default function ExportPackagePanel({ generated }) {
         </div>
       </div>
 
+      <div className="vs-export-options">
+        {[
+          ['Copy full package', 'Available now'],
+          ['Download Markdown', 'Available now'],
+          ['Copy app files', 'Available now'],
+          ['Prepare for future web link', 'Available now'],
+          ['Create Website Link', 'Coming later'],
+          ['Create Desktop App', 'Coming later'],
+        ].map(([label, status]) => (
+          <article key={label} className="vs-export-option">
+            <strong>{label}</strong>
+            <span>{status}</span>
+          </article>
+        ))}
+      </div>
+
       <div className="vs-export-preview">
         <pre>{markdown || 'Generate a workspace to create the full Markdown package.'}</pre>
       </div>
